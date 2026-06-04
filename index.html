@@ -509,10 +509,13 @@
   .form-group input:focus,
   .form-group select:focus { border-color: var(--purple-mid); }
 
+  /* FIX 6: select color cuando tiene valor seleccionado */
+  .form-group select.has-value { color: var(--white); }
+  .form-group select:not(.has-value) { color: #4a3d65; }
+
   .select-wrap { position: relative; }
   .select-wrap select { cursor: pointer; }
   .select-wrap select option { background: #1e1535; color: var(--white); }
-  .select-wrap select:invalid { color: #4a3d65; }
 
   .select-arrow {
     position: absolute;
@@ -546,6 +549,19 @@
     gap: 8px;
   }
   .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  /* FIX 5: spinner de carga */
+  .btn-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(10,10,10,0.3);
+    border-top-color: #0a0a0a;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ── THANK YOU PAGE ── */
   #thankyou {
@@ -822,26 +838,36 @@
     footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
     .sticky-cta-bar { display: block; }
     footer { padding-bottom: 90px; }
+
+    /* FIX 3: FAB por encima del sticky bar en tablets */
+    .whatsapp-fab { bottom: 90px; }
   }
 
   @media (max-width: 600px) {
     nav { padding: 14px 20px; }
-    #hero { padding: 84px 20px 100px; gap: 32px; }
-    .hero-left h1 { font-size: clamp(2.4rem, 11vw, 3.4rem); margin-bottom: 18px; letter-spacing: -1.5px; }
+
+    /* FIX 1: padding superior reducido, h1 más compacto */
+    #hero { padding: 76px 20px 100px; gap: 32px; }
+    .hero-left h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); margin-bottom: 16px; letter-spacing: -1.5px; }
     .hero-left p { font-size: 1rem; margin-bottom: 20px; }
     .hero-features { gap: 14px; margin-bottom: 28px; }
     .hero-features li { font-size: 0.92rem; }
     .btn-hero { width: 100%; justify-content: center; font-size: 1.05rem; padding: 18px 20px; margin-bottom: 8px; }
     .hero-right { display: none; }
+
     #proceso { padding: 60px 20px; }
     #proceso h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
     .proceso-grid { grid-template-columns: 1fr; gap: 0; }
     .proceso-step { flex-direction: row; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); }
     .proceso-step:last-child { border-bottom: none; }
-    .paso-icon-wrap { width: 64px; height: 64px; flex-shrink: 0; margin-bottom: 0; border-radius: 16px; }
+
+    /* FIX 4: ícono circular (no cuadrado) en mobile */
+    .paso-icon-wrap { width: 64px; height: 64px; flex-shrink: 0; margin-bottom: 0; border-radius: 50%; }
     .paso-icon-wrap svg { width: 30px; height: 30px; }
+
     .proceso-step h3 { font-size: 0.78rem; margin-bottom: 6px; }
     .proceso-step p { font-size: 0.88rem; line-height: 1.5; }
+
     #contacto { padding: 60px 20px 100px; gap: 36px; }
     .contacto-left h2 { font-size: clamp(2rem, 10vw, 2.8rem); }
     .contacto-left > p { font-size: 0.93rem; }
@@ -853,6 +879,7 @@
     .form-group { margin-bottom: 18px; }
     .form-group input, .form-group select { padding: 14px 16px; font-size: 1rem; }
     .btn-submit { font-size: 1rem; padding: 18px; }
+
     #thankyou { padding: 70px 20px 100px; }
     .ty-cards { grid-template-columns: 1fr; gap: 12px; }
     .ty-card { padding: 28px 20px; flex-direction: row; text-align: left; gap: 16px; }
@@ -862,6 +889,9 @@
     .ty-card p { font-size: 0.82rem; }
     .btn-back { width: 100%; justify-content: center; padding: 18px 24px; }
     footer { padding: 20px 20px 90px; flex-direction: column; gap: 8px; text-align: center; }
+
+    /* FIX 3: FAB por encima del sticky bar en mobile */
+    .whatsapp-fab { bottom: 90px; right: 16px; }
   }
 
   @media (max-width: 380px) {
@@ -996,7 +1026,6 @@
           </div>
         </div>
 
-        <!-- ✅ CHAT ACTUALIZADO -->
         <div class="chat-messages">
           <div class="chat-bubble bubble-user">
             Gasto $200k/mes en ads y no veo resultados claros 😔
@@ -1157,7 +1186,7 @@
         </div>
       </div>
 
-      <button class="btn-submit" onclick="submitForm()">
+      <button class="btn-submit" id="btn-submit" onclick="submitForm()">
         Quiero mi auditoría gratis →
       </button>
       <p style="text-align:center; font-size:0.8rem; color:var(--gray); margin-top:14px;">🔒 Tu información es confidencial.</p>
@@ -1265,6 +1294,14 @@
     obs.observe(contactSection);
   }
 
+  // FIX 6: color blanco en selects cuando tienen valor seleccionado
+  ['f-rubro', 'f-budget'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.addEventListener('change', () => {
+      sel.classList.toggle('has-value', sel.value !== '');
+    });
+  });
+
   async function submitForm() {
     const nombre      = document.getElementById('f-nombre').value.trim();
     const whatsapp    = document.getElementById('f-wp').value.trim();
@@ -1284,8 +1321,9 @@
       return;
     }
 
-    const btn = document.querySelector('.btn-submit');
-    btn.textContent = 'Enviando...';
+    // FIX 5: spinner de carga en el botón
+    const btn = document.getElementById('btn-submit');
+    btn.innerHTML = '<span class="btn-spinner"></span> Enviando...';
     btn.disabled = true;
 
     try {
@@ -1313,8 +1351,12 @@
     document.getElementById('f-rubro').value = '';
     document.getElementById('f-budget').value = '';
 
-    const btn = document.querySelector('.btn-submit');
-    btn.textContent = 'Quiero mi auditoría gratis →';
+    // Resetear color de selects
+    document.getElementById('f-rubro').classList.remove('has-value');
+    document.getElementById('f-budget').classList.remove('has-value');
+
+    const btn = document.getElementById('btn-submit');
+    btn.innerHTML = 'Quiero mi auditoría gratis →';
     btn.disabled = false;
 
     document.getElementById('thankyou').classList.remove('visible');
