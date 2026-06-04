@@ -6,15 +6,18 @@
 <title>Sync — Agencia de Meta Ads en Argentina</title>
 <meta name="description" content="Gestionamos tus campañas de Facebook e Instagram Ads para que cada peso invertido genere resultados reales. Auditoría gratuita sin compromiso.">
 
-<!-- OG Tags (para redes sociales) -->
 <meta property="og:title" content="Sync — Agencia de Meta Ads">
 <meta property="og:description" content="Campañas de Meta Ads que generan resultados reales. Primera auditoría gratis.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://TU-DOMINIO.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Figtree:wght@400;500;600;700;800;900&family=Alice&display=swap" rel="stylesheet">
+
 <style>
+  /* RESETEO GENERAL: Evita márgenes rebeldes del navegador y estandariza el cálculo de tamaños */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* VARIABLES GLOBALES: Centraliza colores para cambiarlos fácil desde acá */
   :root {
     --bg: #120820;
     --bg2: #160b2a;
@@ -29,18 +32,19 @@
     --border: #2e2050;
   }
 
+  /* Hace que el scroll al clickear los enlaces internos sea suave y progresivo */
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Figtree', sans-serif;
     background: var(--bg);
     color: var(--white);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita scrolls horizontales accidentales */
   }
 
-  /* ── NAVBAR ── */
+  /* ── NAVBAR (Barra de Navegación) ── */
   nav {
-    position: fixed;
+    position: fixed; /* Se queda clavada arriba mientras hacés scroll */
     top: 0; left: 0; right: 0;
     z-index: 100;
     display: flex;
@@ -48,9 +52,17 @@
     justify-content: space-between;
     padding: 18px 60px;
     background: var(--bg);
+    transition: background 0.3s, border-bottom 0.3s;
   }
 
-  nav.hidden { display: none; }
+  /* Clase que se activa mediante JavaScript al hacer scroll (efecto vidrio/blur) */
+  nav.scrolled {
+    background: rgba(18, 8, 32, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+  }
 
   .logo {
     display: flex;
@@ -82,12 +94,12 @@
   }
   .btn-lime:hover { opacity: 0.88; }
 
-  /* ── HERO ── */
+  /* ── HERO (Sección Principal - Escritorio) ── */
   #hero {
     min-height: 100vh;
-    padding: 120px 60px 80px;
+    padding: 140px 60px 80px;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.2fr 0.8fr; /* Divide la pantalla en dos columnas (Texto | Chat) */
     gap: 48px;
     align-items: center;
   }
@@ -100,7 +112,7 @@
 
   .hero-left h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(3.6rem, 5.8vw, 6.2rem);
+    font-size: clamp(3.6rem, 5.8vw, 6.2rem); /* Escala el tamaño según el ancho de la pantalla */
     font-weight: 900;
     line-height: 0.95;
     letter-spacing: -2px;
@@ -172,6 +184,7 @@
     flex-shrink: 0;
   }
 
+  /* MAQUETADO DEL CHAT SIMULADO (Aporta prueba analítica visual) */
   .hero-right {
     display: flex;
     flex-direction: column;
@@ -209,22 +222,9 @@
     flex-shrink: 0;
   }
 
-  .chat-header-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .chat-header-name {
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--white);
-  }
-
-  .chat-header-status {
-    font-size: 0.8rem;
-    color: var(--gray);
-  }
+  .chat-header-info { display: flex; flex-direction: column; gap: 2px; }
+  .chat-header-name { font-weight: 800; font-size: 1rem; color: var(--white); }
+  .chat-header-status { font-size: 0.8rem; color: var(--gray); }
 
   .chat-messages {
     padding: 20px 20px 24px;
@@ -263,23 +263,6 @@
     border-bottom-right-radius: 4px;
     margin-left: auto;
   }
-
-  /* WhatsApp FAB */
-  .whatsapp-fab {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 200;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    transition: transform 0.2s;
-  }
-  .whatsapp-fab:hover { transform: scale(1.07); }
-  .whatsapp-fab svg { width: 60px; height: 60px; }
 
   /* ── SECCIÓN EL PROCESO ── */
   #proceso {
@@ -325,7 +308,7 @@
 
   .proceso-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 pasos alineados en fila para computadoras */
     gap: 32px;
     position: relative;
   }
@@ -369,959 +352,21 @@
     margin-bottom: 20px;
   }
 
-  .proceso-step p {
-    font-size: 0.95rem;
-    color: var(--gray);
-    line-height: 1.7;
-  }
+  .proceso-step p { font-size: 0.95rem; color: var(--gray); line-height: 1.7; }
 
-  /* ── SECCIÓN FORMULARIO ── */
+  /* ── SECCIÓN FORMULARIO (Objetivo Único de Conversión) ── */
   #contacto {
     padding: 100px 60px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Columna de Copy persuasivo | Columna de Formulario */
     gap: 80px;
     align-items: start;
   }
 
-  .contacto-left .section-label {
-    margin-bottom: 8px;
-    color: var(--purple-mid);
-  }
-
-  .contacto-left h2 {
-    font-size: clamp(2.8rem, 5vw, 5rem);
-    font-weight: 900;
-    line-height: 1.0;
-    margin: 20px 0 24px;
-  }
-
+  .contacto-left .section-label { margin-bottom: 8px; color: var(--purple-mid); }
+  .contacto-left h2 { font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 900; line-height: 1.0; margin: 20px 0 24px; }
   .contacto-left h2 .highlight { color: var(--lime); }
+  .contacto-left > p { color: var(--gray); font-size: 0.97rem; line-height: 1.6; margin-bottom: 32px; max-width: 540px; }
 
-  .contacto-left > p {
-    color: var(--gray);
-    font-size: 0.97rem;
-    line-height: 1.6;
-    margin-bottom: 32px;
-    max-width: 540px;
-  }
-
-  .contacto-checks {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .contacto-checks li {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 0.97rem;
-    color: var(--white);
-  }
-
-  .check-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #2d1f52;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .check-icon svg { width: 22px; height: 22px; stroke: var(--lime); fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
-
-  .form-card {
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-  }
-
-  .form-card h3 {
-    font-family: 'Alice', serif;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: 400;
-    margin-bottom: 8px;
-    line-height: 1.1;
-  }
-
-  .form-card h3 span {
-    color: var(--lime);
-    font-family: 'Alice', serif;
-    font-style: normal;
-    font-weight: 400;
-    text-transform: lowercase;
-  }
-
-  .form-card .form-subtitle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: var(--gray);
-    margin-bottom: 36px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 0;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-
-  .form-group label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  .form-group input,
-  .form-group select {
-    background: var(--input-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 18px;
-    color: var(--white);
-    font-family: 'Figtree', sans-serif;
-    font-size: 0.95rem;
-    outline: none;
-    transition: border-color 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
-    width: 100%;
-  }
-
-  .form-group input::placeholder { color: #4a3d65; }
-  .form-group input:focus,
-  .form-group select:focus { border-color: var(--purple-mid); }
-
-  .select-wrap { position: relative; }
-  .select-wrap select { cursor: pointer; }
-  .select-wrap select option { background: #1e1535; color: var(--white); }
-  .select-wrap select:invalid { color: #4a3d65; }
-
-  .select-arrow {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--gray);
-    display: flex;
-    align-items: center;
-  }
-
-  .select-arrow svg { width: 18px; height: 18px; stroke: var(--gray); fill: none; stroke-width: 2.5; }
-
-  .btn-submit {
-    width: 100%;
-    background: var(--lime);
-    color: #0a0a0a;
-    font-family: 'Figtree', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    padding: 20px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s;
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  /* ── THANK YOU PAGE ── */
-  #thankyou {
-    display: none;
-    min-height: 100vh;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 40px;
-    text-align: center;
-  }
-
-  #thankyou.visible { display: flex; }
-
-  .ty-check {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid var(--lime);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 32px;
-    animation: popIn 0.5s ease;
-  }
-
-  @keyframes popIn {
-    from { transform: scale(0); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-
-  .ty-check svg { width: 44px; height: 44px; stroke: var(--lime); fill: none; stroke-width: 2.5; }
-
-  #thankyou h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    max-width: 1000px;
-  }
-
-  #thankyou h2 span { color: var(--lime); }
-
-  .ty-subtitle {
-    font-size: 0.97rem;
-    color: var(--gray);
-    line-height: 1.6;
-    margin-bottom: 40px;
-    max-width: 560px;
-  }
-
-  .ty-divider {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 28px;
-  }
-
-  .ty-divider-line { flex: 1; height: 1px; background: var(--purple); }
-
-  .ty-divider-text {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--white);
-    white-space: nowrap;
-  }
-
-  .ty-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    max-width: 900px;
-    width: 100%;
-    margin-bottom: 40px;
-  }
-
-  .ty-card {
-    background: #1a1030;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px 28px 36px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .ty-card-icon {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: rgba(107, 63, 160, 0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
-  .ty-card-icon svg { width: 36px; height: 36px; stroke: var(--lime); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .ty-card h4 { font-size: 1.05rem; font-weight: 800; }
-  .ty-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
-
-  .btn-back {
-    background: var(--lime);
-    color: #0a0a0a;
-    font-family: 'Figtree', sans-serif;
-    font-weight: 800;
-    font-size: 1.05rem;
-    padding: 18px 64px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    transition: opacity 0.2s, transform 0.2s;
-    text-decoration: none;
-    margin-bottom: 16px;
-  }
-  .btn-back:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 24px 60px;
-    border-top: 1px solid var(--border);
-    font-size: 0.82rem;
-    color: var(--gray);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  #main-content.hidden { display: none; }
-
-  nav.scrolled {
-    background: rgba(18, 8, 32, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 32px rgba(0,0,0,0.3);
-    transition: background 0.3s, box-shadow 0.3s;
-  }
-
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 8px;
-    transition: background 0.2s;
-    z-index: 201;
-    flex-shrink: 0;
-  }
-  .nav-hamburger:hover { background: rgba(255,255,255,0.07); }
-  .nav-hamburger span {
-    display: block;
-    height: 2px;
-    background: var(--white);
-    border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s, width 0.3s;
-    transform-origin: center;
-  }
-  .nav-hamburger span:nth-child(2) { width: 75%; }
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 100%; }
-
-  .nav-mobile-menu {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 199;
-    background: rgba(12, 5, 22, 0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 80px 32px 40px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .nav-mobile-menu.open {
-    display: flex;
-    opacity: 1;
-    pointer-events: all;
-  }
-  .nav-mobile-menu a {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: -0.5px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    width: 100%;
-    text-align: center;
-    transition: color 0.2s;
-  }
-  .nav-mobile-menu a:last-child { border-bottom: none; }
-  .nav-mobile-menu a:hover, .nav-mobile-menu a.cta { color: var(--lime); }
-  .nav-mobile-menu a.cta {
-    margin-top: 16px;
-    background: var(--lime);
-    color: #0a0a0a;
-    border-radius: 50px;
-    border: none;
-    padding: 18px 40px;
-    font-size: 1.1rem;
-  }
-  .nav-mobile-badge {
-    font-size: 0.75rem;
-    color: var(--gray);
-    margin-top: 24px;
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  .sticky-cta-bar {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    z-index: 150;
-    background: linear-gradient(to top, var(--bg) 60%, transparent);
-    padding: 16px 20px 20px;
-  }
-  .sticky-cta-bar a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    background: var(--lime);
-    color: #0a0a0a;
-    font-family: 'Figtree', sans-serif;
-    font-weight: 800;
-    font-size: 1.05rem;
-    padding: 18px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 8px 32px rgba(200,255,0,0.25);
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .sticky-cta-bar a:hover { opacity: 0.9; transform: translateY(-1px); }
-
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .btn-lime { display: none; }
-    .nav-hamburger { display: flex; }
-    #hero { grid-template-columns: 1fr; padding: 100px 32px 60px; gap: 40px; min-height: auto; }
-    .hero-left h1 { font-size: clamp(2.6rem, 7vw, 4rem); }
-    .hero-left p { max-width: 100%; font-size: 1.05rem; }
-    .hero-right { display: block; max-width: 480px; margin: 0 auto; width: 100%; }
-    #proceso { padding: 80px 32px; }
-    .proceso-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
-    .paso-icon-wrap { width: 120px; height: 120px; }
-    .paso-icon-wrap svg { width: 52px; height: 52px; }
-    #contacto { grid-template-columns: 1fr; padding: 80px 32px; gap: 48px; }
-    .contacto-left h2 { font-size: clamp(2.2rem, 7vw, 3.2rem); }
-    .ty-cards { grid-template-columns: repeat(3, 1fr); }
-    #thankyou { padding: 80px 32px; }
-    footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
-    .sticky-cta-bar { display: block; }
-    footer { padding-bottom: 90px; }
-  }
-
-  @media (max-width: 600px) {
-    nav { padding: 14px 20px; }
-#hero { padding: 84px 20px 80px; gap: 0; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-start; }    .hero-left p { font-size: 1rem; margin-bottom: 20px; }
-.hero-left { justify-content: space-between; min-height: calc(100svh - 164px); }   
-.hero-features { gap: 14px; margin-bottom: 28px; }
-    .hero-features li { font-size: 0.92rem; }
-    .btn-hero { width: 100%; justify-content: center; font-size: 1.05rem; padding: 18px 20px; margin-bottom: 8px; }
-    .hero-right { display: none; }
-    #proceso { padding: 32px 20px; }
-    #proceso h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
-    .proceso-grid { grid-template-columns: 1fr; gap: 0; }
-    .proceso-step { flex-direction: row; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); }
-    .proceso-step:last-child { border-bottom: none; }
-    .paso-icon-wrap { width: 64px; height: 64px; flex-shrink: 0; margin-bottom: 0; border-radius: 16px; }
-    .paso-icon-wrap svg { width: 30px; height: 30px; }
-    .proceso-step h3 { font-size: 0.78rem; margin-bottom: 6px; }
-    .proceso-step p { font-size: 0.88rem; line-height: 1.5; }
-#contacto {
-      padding: 32px 20px 100px;    .contacto-left h2 { font-size: clamp(2rem, 10vw, 2.8rem); }
-    .contacto-left > p { font-size: 0.93rem; }
-    .contacto-checks li { font-size: 0.92rem; gap: 12px; }
-    .check-icon { width: 32px; height: 32px; flex-shrink: 0; }
-    .check-icon svg { width: 18px; height: 18px; }
-    .form-card h3 { font-size: clamp(1.6rem, 7vw, 2rem); }
-    .form-row { grid-template-columns: 1fr; gap: 0; }
-    .form-group { margin-bottom: 18px; }
-    .form-group input, .form-group select { padding: 14px 16px; font-size: 1rem; }
-    .btn-submit { font-size: 1rem; padding: 18px; }
-    #thankyou { padding: 70px 20px 100px; }
-    .ty-cards { grid-template-columns: 1fr; gap: 12px; }
-    .ty-card { padding: 28px 20px; flex-direction: row; text-align: left; gap: 16px; }
-    .ty-card-icon { width: 56px; height: 56px; flex-shrink: 0; margin-bottom: 0; }
-    .ty-card-icon svg { width: 26px; height: 26px; }
-    .ty-card h4 { font-size: 0.97rem; margin-bottom: 4px; }
-    .ty-card p { font-size: 0.82rem; }
-    .btn-back { width: 100%; justify-content: center; padding: 18px 24px; }
-    footer { padding: 20px 20px 90px; flex-direction: column; gap: 8px; text-align: center; }
-  }
-
-  @media (max-width: 380px) {
-    .hero-left h1 { font-size: 2.1rem; }
-    .proceso-step { gap: 14px; }
-    .paso-icon-wrap { width: 54px; height: 54px; }
-    .paso-icon-wrap svg { width: 24px; height: 24px; }
-  }
-
-  @media (hover: none) and (pointer: coarse) {
-    .btn-hero, .btn-submit, .btn-lime, .btn-back { min-height: 52px; }
-    .form-group input, .form-group select { min-height: 52px; font-size: 1rem; }
-    .sticky-cta-bar a { min-height: 56px; }
-  }
-</style>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav id="main-nav">
-  <a href="#" class="logo" onclick="goHome()">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="18" width="7" height="14" rx="3.5" fill="url(#g1)"/>
-      <rect x="12" y="10" width="7" height="22" rx="3.5" fill="url(#g2)"/>
-      <rect x="22" y="4" width="7" height="28" rx="3.5" fill="url(#g3)"/>
-      <defs>
-        <linearGradient id="g1" x1="5.5" y1="18" x2="5.5" y2="32" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#a855f7"/>
-          <stop offset="100%" stop-color="#7c3aed"/>
-        </linearGradient>
-        <linearGradient id="g2" x1="15.5" y1="10" x2="15.5" y2="32" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#c084fc"/>
-          <stop offset="100%" stop-color="#a855f7"/>
-        </linearGradient>
-        <linearGradient id="g3" x1="25.5" y1="4" x2="25.5" y2="32" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#e9d5ff"/>
-          <stop offset="100%" stop-color="#c084fc"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    sync
-  </a>
-  <a href="#contacto" class="btn-lime">Auditoría gratis →</a>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- Mobile nav overlay -->
-<div class="nav-mobile-menu" id="nav-mobile-menu" role="dialog" aria-label="Menú de navegación">
-  <a href="#hero" onclick="closeMobileMenu()">Inicio</a>
-  <a href="#proceso" onclick="closeMobileMenu()">El Proceso</a>
-  <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
-  <a href="#contacto" class="cta" onclick="closeMobileMenu()">Quiero mi auditoría gratis →</a>
-  <p class="nav-mobile-badge">🔒 Sin costo · Sin contrato · Sin compromiso</p>
-</div>
-
-<!-- Sticky CTA bar (mobile) -->
-<div class="sticky-cta-bar" id="sticky-cta">
-  <a href="#contacto">Quiero mi auditoría gratis 🚀</a>
-</div>
-
-<!-- MAIN CONTENT -->
-<div id="main-content">
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-left">
-      <h1>Estrategia<br>Anuncios<br><span>Resultados</span></h1>
-      <p>Gestión profesional de Meta Ads para negocios que quieren crecer de forma rentable.</p>
-      <ul class="hero-features">
-        <li>
-          <span class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a0a0b0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
-            </svg>
-          </span>
-          Estrategias personalizadas para tu negocio
-        </li>
-        <li>
-          <span class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a0a0b0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
-            </svg>
-          </span>
-          Gestión y optimización de campañas
-        </li>
-        <li>
-          <span class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a0a0b0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="14" width="4" height="8" rx="1"/><rect x="9" y="9" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="18" rx="1"/>
-            </svg>
-          </span>
-          Creativos que convierten, no solo que se ven bien
-        </li>
-      </ul>
-      <a href="https://wa.me/541126735729?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios%20%F0%9F%9A%80" target="_blank" class="btn-hero">
-        Hablemos
-        <span class="arrow-circle">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"/>
-            <polyline points="7 7 17 7 17 17"/>
-          </svg>
-        </span>
-      </a>
-    </div>
-
-    <div class="hero-right">
-      <div class="chat-container">
-        <div class="chat-header">
-          <div class="chat-header-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
-              <rect x="1" y="13" width="5" height="10" rx="2.5" fill="url(#ch1)"/>
-              <rect x="9" y="8" width="5" height="15" rx="2.5" fill="url(#ch2)"/>
-              <rect x="17" y="3" width="5" height="20" rx="2.5" fill="url(#ch3)"/>
-              <defs>
-                <linearGradient id="ch1" x1="3.5" y1="13" x2="3.5" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#a855f7"/><stop offset="1" stop-color="#7c3aed"/>
-                </linearGradient>
-                <linearGradient id="ch2" x1="11.5" y1="8" x2="11.5" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#c084fc"/><stop offset="1" stop-color="#a855f7"/>
-                </linearGradient>
-                <linearGradient id="ch3" x1="19.5" y1="3" x2="19.5" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#e9d5ff"/><stop offset="1" stop-color="#c084fc"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="chat-header-info">
-            <span class="chat-header-name">Sync</span>
-            <span class="chat-header-status">En línea</span>
-          </div>
-        </div>
-
-        <!-- ✅ CHAT ACTUALIZADO -->
-        <div class="chat-messages">
-          <div class="chat-bubble bubble-user">
-            Gasto $200k/mes en ads y no veo resultados claros 😔
-            <div class="time">11:20 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
-          </div>
-
-          <div class="chat-bubble bubble-agent">
-            Entiendo. El problema no es el presupuesto, es la estrategia. ¿Puedo ver tu cuenta?
-            <div class="time">11:21 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
-          </div>
-
-          <div class="chat-bubble bubble-user">
-            Sí, obvio. Quiero entender qué estoy haciendo mal
-            <div class="time">11:22 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
-          </div>
-
-          <div class="chat-bubble bubble-agent">
-            Hacemos que tu inversión en Meta trabaje para vos. Resultados medibles desde el día uno. ⚡
-            <div class="time">11:23 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EL PROCESO -->
-  <section id="proceso">
-    <div class="section-label">EL PROCESO</div>
-    <h2>Así es trabajar con sync</h2>
-    <p class="subtitle">Un proceso claro, estratégico y enfocado en resultados.</p>
-
-    <div class="proceso-grid">
-      <div class="proceso-step">
-        <div class="paso-icon-wrap">
-          <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><line x1="16.5" y1="16.5" x2="23" y2="23"/></svg>
-        </div>
-        <h3>Auditoria</h3>
-        <p>Analizamos tu negocio, competencia y situación actual en Meta.</p>
-      </div>
-
-      <div class="proceso-step">
-        <div class="paso-icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"/>
-            <circle cx="12" cy="12" r="6"/>
-            <circle cx="12" cy="12" r="2"/>
-          </svg>
-        </div>
-        <h3>Estrategia</h3>
-        <p>Diseñamos una estrategia personalizada para tu negocio, presupuesto y objetivo.</p>
-      </div>
-
-      <div class="proceso-step">
-        <div class="paso-icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-          </svg>
-        </div>
-        <h3>Lanzamientos</h3>
-        <p>Producimos los creativos y lanzamos las campañas correctamente configuradas desde el día uno.</p>
-      </div>
-
-      <div class="proceso-step">
-        <div class="paso-icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <rect x="2" y="14" width="4" height="8" rx="0.5"/>
-            <rect x="9" y="9" width="4" height="13" rx="0.5"/>
-            <rect x="16" y="4" width="4" height="18" rx="0.5"/>
-          </svg>
-        </div>
-        <h3>Análisis</h3>
-        <p>Monitoreamos, optimizamos y te reportamos con números reales. Siempre sabés qué pasa con tu plata.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO / FORMULARIO -->
-  <section id="contacto">
-    <div class="contacto-left">
-      <div class="section-label">EMPEZÁ HOY</div>
-      <h2>Llevamos<br>tu negocio al<br><span class="highlight">siguiente nivel</span></h2>
-      <p>Hablamos sobre tu proyecto y creamos juntos una estrategia que genere resultados reales. La primera auditoría es gratis.</p>
-      <ul class="contacto-checks">
-        <li>
-          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Análisis de tu cuenta de Meta Ads
-        </li>
-        <li>
-          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Revisión de la competencia en tu nicho
-        </li>
-        <li>
-          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Propuesta de estrategia personalizada
-        </li>
-        <li>
-          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Sin costo, sin contrato, sin compromiso
-        </li>
-      </ul>
-    </div>
-
-    <div class="form-card">
-      <h3>Pedí tu auditoría <span>gratis</span></h3>
-      <div class="form-subtitle">
-        <span>🎯</span>
-        Estrategia personalizada para cada negocio
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>NOMBRE</label>
-          <input type="text" id="f-nombre" placeholder="Tu nombre">
-        </div>
-        <div class="form-group">
-          <label>WHATSAPP</label>
-          <input type="tel" id="f-wp" placeholder="+54 9 11...">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>INSTAGRAM/ SITIO WEB</label>
-        <input type="text" id="f-web" placeholder="@tuempresa o www.tuempresa.com">
-      </div>
-
-      <div class="form-group">
-        <label>¿EN QUÉ RUBRO ESTAS?</label>
-        <div class="select-wrap">
-          <select id="f-rubro" required>
-            <option value="" disabled selected hidden>Seleccioná tu industria</option>
-            <option>E-commerce / Tienda online</option>
-            <option>Moda, belleza o cosmética</option>
-            <option>Salud, clínicas o bienestar</option>
-            <option>Infoproductos / Cursos online</option>
-            <option>Servicios locales</option>
-            <option>Inmobiliaria</option>
-            <option>Otro</option>
-          </select>
-          <span class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>¿CUÁNTO INVERTÍS POR MES EN ADS?</label>
-        <div class="select-wrap">
-          <select id="f-budget" required>
-            <option value="" disabled selected hidden>Presupuesto mensual aprox.</option>
-            <option>Aun no invierto en ads</option>
-            <option>Menos de $200 USD/mes</option>
-            <option>$300 – $1.000 USD/mes</option>
-            <option>$1.000 – $5.000 USD/mes</option>
-            <option>Más de $5.000 USD/mes</option>
-          </select>
-          <span class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </div>
-      </div>
-
-      <button class="btn-submit" onclick="submitForm()">
-        Quiero mi auditoría gratis →
-      </button>
-      <p style="text-align:center; font-size:0.8rem; color:var(--gray); margin-top:14px;">🔒 Tu información es confidencial.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2025 Sync — Meta Ads Agency</span>
-  </footer>
-
-</div><!-- /main-content -->
-
-<!-- THANK YOU PAGE -->
-<div id="thankyou">
-  <div class="ty-check">
-    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-  </div>
-  <h2>¡Solicitud enviada con <span>éxito!</span></h2>
-
-  <p class="ty-subtitle">Gracias por confiar en sync. Recibimos tu solicitud de auditoría gratuita y nos ponemos en contacto a la brevedad por WhatsApp.</p>
-
-  <div class="ty-divider">
-    <div class="ty-divider-line"></div>
-    <span class="ty-divider-text">¿Qué sigue ahora?</span>
-    <div class="ty-divider-line"></div>
-  </div>
-
-  <div class="ty-cards">
-    <div class="ty-card">
-      <div class="ty-card-icon">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-      </div>
-      <h4>Revisamos tu negocio</h4>
-      <p>Analizamos tu cuenta y estrategia para detectar oportunidades reales.</p>
-    </div>
-    <div class="ty-card">
-      <div class="ty-card-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 7 12 13 22 7"/></svg>
-      </div>
-      <h4>Te contactamos pronto</h4>
-      <p>Recibís un WhatsApp con los próximos pasos en menos de 24 h.</p>
-    </div>
-    <div class="ty-card">
-      <div class="ty-card-icon">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
-      </div>
-      <h4>Prepárate para crecer</h4>
-      <p>Te entregamos un plan accionable para escalar tus resultados con publicidad que funciona.</p>
-    </div>
-  </div>
-
-  <a href="https://wa.me/541126735729?text=Hola%2C%20acabo%20de%20completar%20el%20formulario%20y%20quiero%20mi%20auditor%C3%ADa%20gratis%20%F0%9F%9A%80" target="_blank" class="btn-back">
-    Escribinos por WhatsApp 💬
-  </a>
-  <button class="btn-back" style="background:transparent; color:var(--gray); border:1px solid var(--border); margin-top:8px;" onclick="goHome()">
-    Volver al inicio
-  </button>
-</div>
-
-<!-- WHATSAPP FAB -->
-<a href="https://wa.me/541126735729?text=Hola%2C%20quiero%20mi%20auditor%C3%ADa%20gratis%20%F0%9F%9A%80" target="_blank" class="whatsapp-fab" title="WhatsApp">
-  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="30" cy="30" r="30" fill="#25D366"/>
-    <path d="M30 14C21.163 14 14 21.163 14 30c0 2.84.752 5.504 2.063 7.808L14 46l8.428-2.035A15.93 15.93 0 0030 46c8.837 0 16-7.163 16-16S38.837 14 30 14zm8.295 21.728c-.352.988-2.06 1.892-2.836 2.012-.726.112-1.64.16-2.647-.167-.609-.197-1.392-.46-2.39-.902-4.208-1.816-6.957-6.072-7.168-6.353-.21-.28-1.72-2.287-1.72-4.363s1.088-3.093 1.475-3.515c.387-.422.845-.527 1.127-.527.282 0 .563.003.81.014.26.012.608-.098.952.727.352.843 1.196 2.918 1.302 3.129.105.211.176.456.035.737-.14.28-.21.457-.42.703-.21.246-.44.55-.633.739-.21.21-.43.436-.185.854.246.42 1.093 1.8 2.347 2.918 1.612 1.437 2.97 1.883 3.39 2.094.42.21.667.176.912-.106.246-.28 1.053-1.23 1.335-1.65.28-.422.56-.352.946-.211.386.14 2.45 1.156 2.87 1.365.422.21.703.316.808.493.104.175.104 1.01-.248 1.998z" fill="white"/>
-  </svg>
-</a>
-
-<script>
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwvq50RbgwjCmA3swsR3q0UVZtBcpNXkKIjf4r-cm6LkDDQPwO_zIGb_L0TlGSGPIRu/exec';
-
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('nav-mobile-menu');
-
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  function closeMobileMenu() {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMobileMenu();
-  });
-
-  const mainNav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    mainNav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
-
-  const stickyCta = document.getElementById('sticky-cta');
-  const contactSection = document.getElementById('contacto');
-  if (contactSection && stickyCta) {
-    const obs = new IntersectionObserver(entries => {
-      stickyCta.style.opacity = entries[0].isIntersecting ? '0' : '1';
-      stickyCta.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'all';
-    }, { threshold: 0.2 });
-    obs.observe(contactSection);
-  }
-
-  async function submitForm() {
-    const nombre      = document.getElementById('f-nombre').value.trim();
-    const whatsapp    = document.getElementById('f-wp').value.trim();
-    const web         = document.getElementById('f-web').value.trim();
-    const rubro       = document.getElementById('f-rubro').value;
-    const presupuesto = document.getElementById('f-budget').value;
-
-    if (!nombre || !whatsapp) {
-      alert('Por favor completá al menos tu nombre y WhatsApp.');
-      return;
-    }
-
-    const soloNumeros = whatsapp.replace(/[\s\-\(\)]/g, '');
-    const wpValido = /^\+?[0-9]{8,15}$/.test(soloNumeros);
-    if (!wpValido) {
-      alert('Ingresá un número de WhatsApp válido. Ejemplo: +54 9 11 1234-5678');
-      return;
-    }
-
-    const btn = document.querySelector('.btn-submit');
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, whatsapp, web, rubro, presupuesto })
-      });
-    } catch (err) {
-      console.warn('Error al guardar en Sheets:', err);
-    }
-
-    document.getElementById('main-content').classList.add('hidden');
-    document.getElementById('thankyou').classList.add('visible');
-    document.getElementById('main-nav').classList.add('hidden');
-    document.getElementById('sticky-cta').style.display = 'none';
-    window.scrollTo(0, 0);
-  }
-
-  function goHome() {
-    document.getElementById('f-nombre').value = '';
-    document.getElementById('f-wp').value = '';
-    document.getElementById('f-web').value = '';
-    document.getElementById('f-rubro').value = '';
-    document.getElementById('f-budget').value = '';
-
-    const btn = document.querySelector('.btn-submit');
-    btn.textContent = 'Quiero mi auditoría gratis →';
-    btn.disabled = false;
-
-    document.getElementById('thankyou').classList.remove('visible');
-    document.getElementById('main-content').classList.remove('hidden');
-    document.getElementById('main-nav').classList.remove('hidden');
-    document.getElementById('sticky-cta').style.display = '';
-    window.scrollTo(0, 0);
-  }
-</script>
-</body>
-</html>
+  .contacto-checks { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .contacto-checks li { display: flex; align-items: center; gap: 16px; font-size:
