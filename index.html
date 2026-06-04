@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sync — Agencia de Meta Ads en Argentina</title>
 <meta name="description" content="Gestionamos tus campañas de Facebook e Instagram Ads para que cada peso invertido genere resultados reales. Auditoría gratuita sin compromiso.">
+
+<!-- OG Tags (para redes sociales) -->
 <meta property="og:title" content="Sync — Agencia de Meta Ads">
 <meta property="og:description" content="Campañas de Meta Ads que generan resultados reales. Primera auditoría gratis.">
 <meta property="og:type" content="website">
@@ -824,30 +826,12 @@
 
   @media (max-width: 600px) {
     nav { padding: 14px 20px; }
-
-    #hero {
-      padding: 84px 20px 80px;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 0;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex: 1;
-    }
-
-    .hero-left h1 { font-size: clamp(2.4rem, 11vw, 3.4rem); margin-bottom: 18px; letter-spacing: -1.5px; }
-    .hero-left p { font-size: 1rem; margin-bottom: 20px; }
-    .hero-features { gap: 14px; margin-bottom: 28px; }
+#hero { padding: 84px 20px 80px; gap: 0; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-start; }    .hero-left p { font-size: 1rem; margin-bottom: 20px; }
+.hero-left { justify-content: space-between; min-height: calc(100svh - 164px); }   
+.hero-features { gap: 14px; margin-bottom: 28px; }
     .hero-features li { font-size: 0.92rem; }
     .btn-hero { width: 100%; justify-content: center; font-size: 1.05rem; padding: 18px 20px; margin-bottom: 8px; }
     .hero-right { display: none; }
-
     #proceso { padding: 32px 20px; }
     #proceso h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
     .proceso-grid { grid-template-columns: 1fr; gap: 0; }
@@ -857,9 +841,8 @@
     .paso-icon-wrap svg { width: 30px; height: 30px; }
     .proceso-step h3 { font-size: 0.78rem; margin-bottom: 6px; }
     .proceso-step p { font-size: 0.88rem; line-height: 1.5; }
-
-    #contacto { padding: 32px 20px 100px; }
-    .contacto-left h2 { font-size: clamp(2rem, 10vw, 2.8rem); }
+#contacto {
+      padding: 32px 20px 100px;    .contacto-left h2 { font-size: clamp(2rem, 10vw, 2.8rem); }
     .contacto-left > p { font-size: 0.93rem; }
     .contacto-checks li { font-size: 0.92rem; gap: 12px; }
     .check-icon { width: 32px; height: 32px; flex-shrink: 0; }
@@ -869,7 +852,6 @@
     .form-group { margin-bottom: 18px; }
     .form-group input, .form-group select { padding: 14px 16px; font-size: 1rem; }
     .btn-submit { font-size: 1rem; padding: 18px; }
-
     #thankyou { padding: 70px 20px 100px; }
     .ty-cards { grid-template-columns: 1fr; gap: 12px; }
     .ty-card { padding: 28px 20px; flex-direction: row; text-align: left; gap: 16px; }
@@ -1012,19 +994,24 @@
             <span class="chat-header-status">En línea</span>
           </div>
         </div>
+
+        <!-- ✅ CHAT ACTUALIZADO -->
         <div class="chat-messages">
           <div class="chat-bubble bubble-user">
             Gasto $200k/mes en ads y no veo resultados claros 😔
             <div class="time">11:20 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
           </div>
+
           <div class="chat-bubble bubble-agent">
             Entiendo. El problema no es el presupuesto, es la estrategia. ¿Puedo ver tu cuenta?
             <div class="time">11:21 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
           </div>
+
           <div class="chat-bubble bubble-user">
             Sí, obvio. Quiero entender qué estoy haciendo mal
             <div class="time">11:22 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
           </div>
+
           <div class="chat-bubble bubble-agent">
             Hacemos que tu inversión en Meta trabaje para vos. Resultados medibles desde el día uno. ⚡
             <div class="time">11:23 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
@@ -1039,6 +1026,7 @@
     <div class="section-label">EL PROCESO</div>
     <h2>Así es trabajar con sync</h2>
     <p class="subtitle">Un proceso claro, estratégico y enfocado en resultados.</p>
+
     <div class="proceso-grid">
       <div class="proceso-step">
         <div class="paso-icon-wrap">
@@ -1047,13 +1035,19 @@
         <h3>Auditoria</h3>
         <p>Analizamos tu negocio, competencia y situación actual en Meta.</p>
       </div>
+
       <div class="proceso-step">
         <div class="paso-icon-wrap">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
         </div>
         <h3>Estrategia</h3>
         <p>Diseñamos una estrategia personalizada para tu negocio, presupuesto y objetivo.</p>
       </div>
+
       <div class="proceso-step">
         <div class="paso-icon-wrap">
           <svg viewBox="0 0 24 24">
@@ -1066,6 +1060,7 @@
         <h3>Lanzamientos</h3>
         <p>Producimos los creativos y lanzamos las campañas correctamente configuradas desde el día uno.</p>
       </div>
+
       <div class="proceso-step">
         <div class="paso-icon-wrap">
           <svg viewBox="0 0 24 24">
@@ -1112,6 +1107,7 @@
         <span>🎯</span>
         Estrategia personalizada para cada negocio
       </div>
+
       <div class="form-row">
         <div class="form-group">
           <label>NOMBRE</label>
@@ -1122,10 +1118,12 @@
           <input type="tel" id="f-wp" placeholder="+54 9 11...">
         </div>
       </div>
+
       <div class="form-group">
         <label>INSTAGRAM/ SITIO WEB</label>
         <input type="text" id="f-web" placeholder="@tuempresa o www.tuempresa.com">
       </div>
+
       <div class="form-group">
         <label>¿EN QUÉ RUBRO ESTAS?</label>
         <div class="select-wrap">
@@ -1142,6 +1140,7 @@
           <span class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
         </div>
       </div>
+
       <div class="form-group">
         <label>¿CUÁNTO INVERTÍS POR MES EN ADS?</label>
         <div class="select-wrap">
@@ -1156,6 +1155,7 @@
           <span class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
         </div>
       </div>
+
       <button class="btn-submit" onclick="submitForm()">
         Quiero mi auditoría gratis →
       </button>
@@ -1176,12 +1176,15 @@
     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
   <h2>¡Solicitud enviada con <span>éxito!</span></h2>
+
   <p class="ty-subtitle">Gracias por confiar en sync. Recibimos tu solicitud de auditoría gratuita y nos ponemos en contacto a la brevedad por WhatsApp.</p>
+
   <div class="ty-divider">
     <div class="ty-divider-line"></div>
     <span class="ty-divider-text">¿Qué sigue ahora?</span>
     <div class="ty-divider-line"></div>
   </div>
+
   <div class="ty-cards">
     <div class="ty-card">
       <div class="ty-card-icon">
@@ -1205,6 +1208,7 @@
       <p>Te entregamos un plan accionable para escalar tus resultados con publicidad que funciona.</p>
     </div>
   </div>
+
   <a href="https://wa.me/541126735729?text=Hola%2C%20acabo%20de%20completar%20el%20formulario%20y%20quiero%20mi%20auditor%C3%ADa%20gratis%20%F0%9F%9A%80" target="_blank" class="btn-back">
     Escribinos por WhatsApp 💬
   </a>
