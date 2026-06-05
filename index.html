@@ -843,11 +843,11 @@
     .whatsapp-fab { bottom: 90px; }
   }
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
     nav { padding: 14px 20px; }
 
-    /* FIX 1: padding superior reducido, h1 más compacto */
-    #hero { padding: 76px 20px 100px; gap: 32px; }
+    /* FIX MARGEN MOBILE: Bajamos el padding inferior de 100px a 16px */
+    #hero { padding: 76px 20px 16px; gap: 32px; }
     .hero-left h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); margin-bottom: 16px; letter-spacing: -1.5px; }
     .hero-left p { font-size: 1rem; margin-bottom: 20px; }
     .hero-features { gap: 14px; margin-bottom: 28px; }
@@ -855,7 +855,8 @@
     .btn-hero { width: 100%; justify-content: center; font-size: 1.05rem; padding: 18px 20px; margin-bottom: 8px; }
     .hero-right { display: none; }
 
-    #proceso { padding: 60px 20px; }
+    /* FIX MARGEN MOBILE: Bajamos el padding superior de 60px a 24px */
+    #proceso { padding: 24px 20px 60px; }
     #proceso h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
     .proceso-grid { grid-template-columns: 1fr; gap: 0; }
     .proceso-step { flex-direction: row; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); }
