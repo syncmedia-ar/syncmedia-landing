@@ -780,7 +780,6 @@
     background: var(--lime);
     color: #0a0a0a;
     border-radius: 50px;
-    border: none;
     padding: 18px 40px;
     font-size: 1.1rem;
   }
@@ -866,8 +865,29 @@
     .paso-icon-wrap { width: 64px; height: 64px; flex-shrink: 0; margin-bottom: 0; border-radius: 50%; }
     .paso-icon-wrap svg { width: 30px; height: 30px; }
 
-    .proceso-step h3 { font-size: 0.78rem; margin-bottom: 6px; }
-    .proceso-step p { font-size: 0.88rem; line-height: 1.5; }
+/* NUEVO: Agrupador de textos alineado verticalmente con el ícono */
+    .proceso-step { display: flex; flex-direction: row; align-items: center; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .proceso-step:last-child { border-bottom: none; }
+
+    .proceso-text-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      gap: 4px;
+    }
+
+    .proceso-step h3 { 
+      font-size: 0.85rem; 
+      margin-bottom: 2px; 
+      letter-spacing: 1.5px;
+    }
+    
+    .proceso-step p { 
+      font-size: 0.88rem; 
+      line-height: 1.4; 
+      color: var(--gray);
+    }
 
     #contacto { padding: 60px 20px 100px; gap: 36px; }
     .contacto-left h2 { font-size: clamp(2rem, 10vw, 2.8rem); }
@@ -1058,13 +1078,15 @@
     <h2>Así es trabajar con sync</h2>
     <p class="subtitle">Un proceso claro, estratégico y enfocado en resultados.</p>
 
-    <div class="proceso-grid">
+<div class="proceso-grid">
       <div class="proceso-step">
         <div class="paso-icon-wrap">
           <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><line x1="16.5" y1="16.5" x2="23" y2="23"/></svg>
         </div>
-        <h3>Auditoria</h3>
-        <p>Analizamos tu negocio, competencia y situación actual en Meta.</p>
+        <div class="proceso-text-wrap">
+          <h3>Auditoria</h3>
+          <p>Analizamos tu negocio, competencia y situación actual en Meta.</p>
+        </div>
       </div>
 
       <div class="proceso-step">
@@ -1075,8 +1097,10 @@
             <circle cx="12" cy="12" r="2"/>
           </svg>
         </div>
-        <h3>Estrategia</h3>
-        <p>Diseñamos una estrategia personalizada para tu negocio, presupuesto y objetivo.</p>
+        <div class="proceso-text-wrap">
+          <h3>Estrategia</h3>
+          <p>Diseñamos una estrategia personalizada para tu negocio, presupuesto y objetivo.</p>
+        </div>
       </div>
 
       <div class="proceso-step">
@@ -1088,9 +1112,26 @@
             <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
           </svg>
         </div>
-        <h3>Lanzamientos</h3>
-        <p>Producimos los creativos y lanzamos las campañas correctamente configuradas desde el día uno.</p>
+        <div class="proceso-text-wrap">
+          <h3>Lanzamientos</h3>
+          <p>Producimos los creativos y lanzamos las campañas correctamente configuradas desde el día uno.</p>
+        </div>
       </div>
+
+      <div class="proceso-step">
+        <div class="paso-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </div>
+        <div class="proceso-text-wrap">
+          <h3>Análisis</h3>
+          <p>Monitoreamos, optimizamos y te reportamos con números reales. Siempre sabés qué pasa con tu plata.</p>
+        </div>
+      </div>
+    </div>
 
       <div class="proceso-step">
         <div class="paso-icon-wrap">
