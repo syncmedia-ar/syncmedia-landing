@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sync — Agencia de Meta Ads en Argentina</title>
 <meta name="description" content="Gestionamos tus campañas de Facebook e Instagram Ads para que cada peso invertido genere resultados reales. Auditoría gratuita sin compromiso.">
-
-<!-- OG Tags (para redes sociales) -->
 <meta property="og:title" content="Sync — Agencia de Meta Ads">
 <meta property="og:description" content="Campañas de Meta Ads que generan resultados reales. Primera auditoría gratis.">
 <meta property="og:type" content="website">
@@ -27,6 +25,8 @@
     --card-bg: #1c1030;
     --input-bg: #1e1535;
     --border: #2e2050;
+    /* Touch target mínimo recomendado */
+    --touch-min: 52px;
   }
 
   html { scroll-behavior: smooth; }
@@ -36,6 +36,8 @@
     background: var(--bg);
     color: var(--white);
     overflow-x: hidden;
+    /* Mejora scroll en iOS */
+    -webkit-overflow-scrolling: touch;
   }
 
   /* ── NAVBAR ── */
@@ -79,6 +81,7 @@
     align-items: center;
     gap: 6px;
     transition: opacity 0.2s;
+    min-height: var(--touch-min);
   }
   .btn-lime:hover { opacity: 0.88; }
 
@@ -155,6 +158,7 @@
     cursor: pointer;
     text-decoration: none;
     transition: opacity 0.2s, transform 0.2s;
+    min-height: var(--touch-min);
   }
   .btn-hero:hover { opacity: 0.88; transform: translateY(-1px); }
 
@@ -277,6 +281,8 @@
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     transition: transform 0.2s;
+    /* Zona táctil ampliada para mobile */
+    -webkit-tap-highlight-color: transparent;
   }
   .whatsapp-fab:hover { transform: scale(1.07); }
   .whatsapp-fab svg { width: 60px; height: 60px; }
@@ -503,13 +509,13 @@
     appearance: none;
     -webkit-appearance: none;
     width: 100%;
+    min-height: var(--touch-min);
   }
 
   .form-group input::placeholder { color: #4a3d65; }
   .form-group input:focus,
   .form-group select:focus { border-color: var(--purple-mid); }
 
-  /* FIX 6: select color cuando tiene valor seleccionado */
   .form-group select.has-value { color: var(--white); }
   .form-group select:not(.has-value) { color: #4a3d65; }
 
@@ -547,11 +553,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    min-height: var(--touch-min);
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
   .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 
-  /* FIX 5: spinner de carga */
   .btn-spinner {
     width: 20px;
     height: 20px;
@@ -685,6 +692,8 @@
     transition: opacity 0.2s, transform 0.2s;
     text-decoration: none;
     margin-bottom: 16px;
+    min-height: var(--touch-min);
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-back:hover { opacity: 0.88; transform: translateY(-1px); }
 
@@ -715,8 +724,8 @@
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     cursor: pointer;
@@ -725,6 +734,7 @@
     transition: background 0.2s;
     z-index: 201;
     flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
   }
   .nav-hamburger:hover { background: rgba(255,255,255,0.07); }
   .nav-hamburger span {
@@ -767,11 +777,16 @@
     color: var(--white);
     text-decoration: none;
     letter-spacing: -0.5px;
-    padding: 12px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--border);
     width: 100%;
     text-align: center;
     transition: color 0.2s;
+    min-height: var(--touch-min);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
   }
   .nav-mobile-menu a:last-child { border-bottom: none; }
   .nav-mobile-menu a:hover, .nav-mobile-menu a.cta { color: var(--lime); }
@@ -792,13 +807,15 @@
     line-height: 1.6;
   }
 
+  /* ── STICKY CTA BAR ── */
   .sticky-cta-bar {
     display: none;
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 150;
-    background: linear-gradient(to top, var(--bg) 60%, transparent);
-    padding: 16px 20px 20px;
+    background: linear-gradient(to top, rgba(18,8,32,1) 60%, transparent);
+    padding: 12px 16px 16px;
+    transition: opacity 0.3s;
   }
   .sticky-cta-bar a {
     display: flex;
@@ -810,15 +827,20 @@
     color: #0a0a0a;
     font-family: 'Figtree', sans-serif;
     font-weight: 800;
-    font-size: 1.05rem;
-    padding: 18px 24px;
+    font-size: 1rem;
+    padding: 0 24px;
+    height: 56px;
     border-radius: 50px;
     text-decoration: none;
     box-shadow: 0 8px 32px rgba(200,255,0,0.25);
     transition: opacity 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .sticky-cta-bar a:hover { opacity: 0.9; transform: translateY(-1px); }
+  .sticky-cta-bar a:active { opacity: 0.85; transform: scale(0.98); }
 
+  /* ══════════════════════════════════════════
+     TABLET (≤ 900px)
+  ══════════════════════════════════════════ */
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     .btn-lime { display: none; }
@@ -838,73 +860,306 @@
     footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
     .sticky-cta-bar { display: block; }
     footer { padding-bottom: 90px; }
-
-    /* FIX 3: FAB por encima del sticky bar en tablets */
-    .whatsapp-fab { bottom: 90px; }
+    .whatsapp-fab { bottom: 88px; }
   }
 
+  /* ══════════════════════════════════════════
+     MOBILE PRINCIPAL (≤ 600px)
+     Optimizado para Edge 50 Ultra y similares
+     Ancho viewport ~412px, ratio 20:9
+  ══════════════════════════════════════════ */
   @media (max-width: 600px) {
-    nav { padding: 14px 20px; }
 
-    /* FIX 1: padding superior reducido, h1 más compacto */
-    #hero { padding: 76px 20px 100px; gap: 32px; }
-    .hero-left h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); margin-bottom: 16px; letter-spacing: -1.5px; }
-    .hero-left p { font-size: 1rem; margin-bottom: 20px; }
-    .hero-features { gap: 14px; margin-bottom: 28px; }
-    .hero-features li { font-size: 0.92rem; }
-    .btn-hero { width: 100%; justify-content: center; font-size: 1.05rem; padding: 18px 20px; margin-bottom: 8px; }
+    /* — NAV — */
+    nav { padding: 0 20px; height: 60px; }
+    .logo { font-size: 1.25rem; }
+    .logo svg { width: 28px; height: 28px; }
+
+    /* — HERO —
+       Pantalla 20:9 = mucho espacio vertical.
+       Queremos que el CTA sea visible sin scrollear. */
+    #hero {
+      padding: 72px 22px 108px;
+      gap: 28px;
+      min-height: 100svh; /* svh = viewport sin barra de browser */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.6rem, 11vw, 3.4rem);
+      letter-spacing: -1.5px;
+      line-height: 0.93;
+      margin-bottom: 18px;
+    }
+
+    .hero-left p {
+      font-size: 0.97rem;
+      line-height: 1.55;
+      margin-bottom: 22px;
+      color: #9090a8;
+    }
+
+    .hero-features {
+      gap: 13px;
+      margin-bottom: 28px;
+    }
+
+    .hero-features li {
+      font-size: 0.9rem;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .hero-features li .icon { width: 22px; }
+
+    /* Botón hero full width, cómodo para pulgar */
+    .btn-hero {
+      width: 100%;
+      justify-content: center;
+      font-size: 1.05rem;
+      padding: 0 24px;
+      height: 56px;
+      border-radius: 50px;
+    }
+
+    /* Chat oculto en mobile para no distraer */
     .hero-right { display: none; }
 
-    #proceso { padding: 60px 20px; }
-    #proceso h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
-    .proceso-grid { grid-template-columns: 1fr; gap: 0; }
-    .proceso-step { flex-direction: row; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+    /* — PROCESO — */
+    #proceso { padding: 64px 22px 56px; }
+
+    #proceso h2 {
+      font-size: clamp(1.85rem, 8.5vw, 2.6rem);
+      margin-bottom: 10px;
+    }
+
+    #proceso .subtitle {
+      font-size: 0.93rem;
+      margin-bottom: 44px;
+    }
+
+    /* Lista vertical en mobile, más legible que grid 2 col */
+    .proceso-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    /* Cada paso: horizontal con ícono a la izquierda */
+    .proceso-step {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
     .proceso-step:last-child { border-bottom: none; }
 
-    /* FIX 4: ícono circular (no cuadrado) en mobile */
-    .paso-icon-wrap { width: 64px; height: 64px; flex-shrink: 0; margin-bottom: 0; border-radius: 50%; }
-    .paso-icon-wrap svg { width: 30px; height: 30px; }
+    /* Ícono circular bien proporcionado */
+    .paso-icon-wrap {
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      border-radius: 50%;
+      margin-bottom: 0;
+    }
+    .paso-icon-wrap svg { width: 28px; height: 28px; }
 
-    .proceso-step h3 { font-size: 0.78rem; margin-bottom: 6px; }
-    .proceso-step p { font-size: 0.88rem; line-height: 1.5; }
+    .proceso-step-text { flex: 1; }
+    .proceso-step h3 {
+      font-size: 0.75rem;
+      margin-bottom: 6px;
+      letter-spacing: 1.8px;
+    }
+    .proceso-step p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #8888a8;
+    }
 
-    #contacto { padding: 60px 20px 100px; gap: 36px; }
-    .contacto-left h2 { font-size: clamp(2rem, 10vw, 2.8rem); }
-    .contacto-left > p { font-size: 0.93rem; }
-    .contacto-checks li { font-size: 0.92rem; gap: 12px; }
-    .check-icon { width: 32px; height: 32px; flex-shrink: 0; }
-    .check-icon svg { width: 18px; height: 18px; }
-    .form-card h3 { font-size: clamp(1.6rem, 7vw, 2rem); }
+    /* — CONTACTO / FORMULARIO — */
+    #contacto {
+      padding: 56px 22px 108px;
+      gap: 40px;
+    }
+
+    .contacto-left h2 {
+      font-size: clamp(2rem, 10vw, 2.9rem);
+      line-height: 1.0;
+      margin: 14px 0 18px;
+    }
+
+    .contacto-left > p {
+      font-size: 0.92rem;
+      margin-bottom: 26px;
+      line-height: 1.55;
+    }
+
+    .contacto-checks {
+      gap: 16px;
+      margin-bottom: 4px;
+    }
+
+    .contacto-checks li {
+      font-size: 0.9rem;
+      gap: 12px;
+      line-height: 1.4;
+    }
+
+    .check-icon {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+    .check-icon svg { width: 18px; height: 18px; stroke-width: 3; }
+
+    /* Título del form */
+    .form-card h3 {
+      font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+      margin-bottom: 6px;
+    }
+
+    .form-card .form-subtitle {
+      font-size: 0.85rem;
+      margin-bottom: 28px;
+    }
+
+    /* Campos apilados en mobile (no dos columnas) */
     .form-row { grid-template-columns: 1fr; gap: 0; }
-    .form-group { margin-bottom: 18px; }
-    .form-group input, .form-group select { padding: 14px 16px; font-size: 1rem; }
-    .btn-submit { font-size: 1rem; padding: 18px; }
 
-    #thankyou { padding: 70px 20px 100px; }
-    .ty-cards { grid-template-columns: 1fr; gap: 12px; }
-    .ty-card { padding: 28px 20px; flex-direction: row; text-align: left; gap: 16px; }
-    .ty-card-icon { width: 56px; height: 56px; flex-shrink: 0; margin-bottom: 0; }
-    .ty-card-icon svg { width: 26px; height: 26px; }
-    .ty-card h4 { font-size: 0.97rem; margin-bottom: 4px; }
-    .ty-card p { font-size: 0.82rem; }
-    .btn-back { width: 100%; justify-content: center; padding: 18px 24px; }
-    footer { padding: 20px 20px 90px; flex-direction: column; gap: 8px; text-align: center; }
+    .form-group { margin-bottom: 20px; }
 
-    /* FIX 3: FAB por encima del sticky bar en mobile */
-    .whatsapp-fab { bottom: 90px; right: 16px; }
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 1.2px;
+      margin-bottom: 2px;
+    }
+
+    /* Inputs más grandes = más cómodos para tipear */
+    .form-group input,
+    .form-group select {
+      padding: 15px 16px;
+      font-size: 1rem; /* evita zoom en iOS */
+      border-radius: 12px;
+      min-height: 54px;
+    }
+
+    .btn-submit {
+      font-size: 1.02rem;
+      height: 58px;
+      padding: 0 24px;
+      border-radius: 50px;
+      margin-top: 4px;
+    }
+
+    /* — THANK YOU — */
+    #thankyou { padding: 72px 22px 108px; }
+
+    .ty-check { width: 80px; height: 80px; margin-bottom: 24px; }
+    .ty-check svg { width: 36px; height: 36px; }
+
+    #thankyou h2 {
+      font-size: clamp(1.8rem, 8vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .ty-subtitle {
+      font-size: 0.92rem;
+      margin-bottom: 28px;
+    }
+
+    .ty-divider { margin-bottom: 20px; }
+    .ty-divider-text { font-size: 0.68rem; letter-spacing: 1.5px; }
+
+    /* Cards verticales en mobile */
+    .ty-cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .ty-card {
+      padding: 22px 20px;
+      flex-direction: row;
+      text-align: left;
+      gap: 16px;
+      border-radius: 16px;
+    }
+
+    .ty-card-icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .ty-card-icon svg { width: 24px; height: 24px; }
+
+    .ty-card-content { flex: 1; }
+    .ty-card h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .ty-card p { font-size: 0.81rem; line-height: 1.5; }
+
+    .btn-back {
+      width: 100%;
+      justify-content: center;
+      padding: 0 24px;
+      height: 56px;
+      border-radius: 50px;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    /* — FOOTER — */
+    footer { padding: 20px 22px 96px; flex-direction: column; gap: 8px; text-align: center; }
+
+    /* FAB WA encima del sticky bar */
+    .whatsapp-fab {
+      bottom: 84px;
+      right: 16px;
+      width: 54px;
+      height: 54px;
+    }
+    .whatsapp-fab svg { width: 54px; height: 54px; }
+
+    /* Sticky bar ajustado */
+    .sticky-cta-bar { padding: 10px 16px 14px; }
+    .sticky-cta-bar a {
+      height: 54px;
+      font-size: 0.97rem;
+      border-radius: 50px;
+    }
   }
 
+  /* ══════════════════════════════════════════
+     EXTRA SMALL (≤ 380px)
+  ══════════════════════════════════════════ */
   @media (max-width: 380px) {
-    .hero-left h1 { font-size: 2.1rem; }
-    .proceso-step { gap: 14px; }
-    .paso-icon-wrap { width: 54px; height: 54px; }
+    .hero-left h1 { font-size: 2.35rem; }
+    #hero { padding: 68px 18px 104px; }
+    #proceso { padding: 56px 18px 48px; }
+    #contacto { padding: 48px 18px 104px; }
+    .paso-icon-wrap { width: 52px; height: 52px; min-width: 52px; }
     .paso-icon-wrap svg { width: 24px; height: 24px; }
+    .proceso-step { gap: 14px; }
+    .form-group input, .form-group select { font-size: 1rem; }
+    footer { padding: 18px 18px 92px; }
   }
 
+  /* Mejor feedback táctil en dispositivos touch */
   @media (hover: none) and (pointer: coarse) {
-    .btn-hero, .btn-submit, .btn-lime, .btn-back { min-height: 52px; }
-    .form-group input, .form-group select { min-height: 52px; font-size: 1rem; }
-    .sticky-cta-bar a { min-height: 56px; }
+    .btn-hero, .btn-submit, .btn-lime, .btn-back,
+    .sticky-cta-bar a { -webkit-tap-highlight-color: transparent; }
+
+    .btn-hero:active, .btn-submit:active,
+    .sticky-cta-bar a:active { opacity: 0.82; transform: scale(0.98); }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--purple-mid);
+      box-shadow: 0 0 0 3px rgba(155, 127, 174, 0.18);
+    }
   }
 </style>
 </head>
@@ -934,10 +1189,10 @@
     </svg>
     sync
   </a>
-  <a href="#contacto" class="btn-lime">Auditoría gratis →</a>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+  <a href="#contacto" class="btn-lime">Auditoría gratis →</a>
 </nav>
 
 <!-- Mobile nav overlay -->
@@ -1025,23 +1280,19 @@
             <span class="chat-header-status">En línea</span>
           </div>
         </div>
-
         <div class="chat-messages">
           <div class="chat-bubble bubble-user">
             Gasto $200k/mes en ads y no veo resultados claros 😔
             <div class="time">11:20 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
           </div>
-
           <div class="chat-bubble bubble-agent">
             Entiendo. El problema no es el presupuesto, es la estrategia. ¿Puedo ver tu cuenta?
             <div class="time">11:21 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
           </div>
-
           <div class="chat-bubble bubble-user">
             Sí, obvio. Quiero entender qué estoy haciendo mal
             <div class="time">11:22 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
           </div>
-
           <div class="chat-bubble bubble-agent">
             Hacemos que tu inversión en Meta trabaje para vos. Resultados medibles desde el día uno. ⚡
             <div class="time">11:23 <svg width="20" height="13" viewBox="0 0 20 13" fill="none" style="display:inline;vertical-align:middle;"><polyline points="1,7 4,11 10,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><polyline points="8,7 11,11 17,1" stroke="#53bdeb" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg></div>
@@ -1062,8 +1313,10 @@
         <div class="paso-icon-wrap">
           <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><line x1="16.5" y1="16.5" x2="23" y2="23"/></svg>
         </div>
-        <h3>Auditoria</h3>
-        <p>Analizamos tu negocio, competencia y situación actual en Meta.</p>
+        <div class="proceso-step-text">
+          <h3>Auditoria</h3>
+          <p>Analizamos tu negocio, competencia y situación actual en Meta.</p>
+        </div>
       </div>
 
       <div class="proceso-step">
@@ -1074,8 +1327,10 @@
             <circle cx="12" cy="12" r="2"/>
           </svg>
         </div>
-        <h3>Estrategia</h3>
-        <p>Diseñamos una estrategia personalizada para tu negocio, presupuesto y objetivo.</p>
+        <div class="proceso-step-text">
+          <h3>Estrategia</h3>
+          <p>Diseñamos una estrategia personalizada para tu negocio, presupuesto y objetivo.</p>
+        </div>
       </div>
 
       <div class="proceso-step">
@@ -1087,8 +1342,10 @@
             <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
           </svg>
         </div>
-        <h3>Lanzamientos</h3>
-        <p>Producimos los creativos y lanzamos las campañas correctamente configuradas desde el día uno.</p>
+        <div class="proceso-step-text">
+          <h3>Lanzamientos</h3>
+          <p>Producimos los creativos y lanzamos las campañas correctamente configuradas desde el día uno.</p>
+        </div>
       </div>
 
       <div class="proceso-step">
@@ -1099,8 +1356,10 @@
             <rect x="16" y="4" width="4" height="18" rx="0.5"/>
           </svg>
         </div>
-        <h3>Análisis</h3>
-        <p>Monitoreamos, optimizamos y te reportamos con números reales. Siempre sabés qué pasa con tu plata.</p>
+        <div class="proceso-step-text">
+          <h3>Análisis</h3>
+          <p>Monitoreamos, optimizamos y te reportamos con números reales. Siempre sabés qué pasa con tu plata.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1141,21 +1400,21 @@
       <div class="form-row">
         <div class="form-group">
           <label>NOMBRE</label>
-          <input type="text" id="f-nombre" placeholder="Tu nombre">
+          <input type="text" id="f-nombre" placeholder="Tu nombre" autocomplete="given-name">
         </div>
         <div class="form-group">
           <label>WHATSAPP</label>
-          <input type="tel" id="f-wp" placeholder="+54 9 11...">
+          <input type="tel" id="f-wp" placeholder="+54 9 11..." autocomplete="tel" inputmode="tel">
         </div>
       </div>
 
       <div class="form-group">
-        <label>INSTAGRAM/ SITIO WEB</label>
-        <input type="text" id="f-web" placeholder="@tuempresa o www.tuempresa.com">
+        <label>INSTAGRAM / SITIO WEB</label>
+        <input type="text" id="f-web" placeholder="@tuempresa o www.tuempresa.com" autocomplete="url" inputmode="url">
       </div>
 
       <div class="form-group">
-        <label>¿EN QUÉ RUBRO ESTAS?</label>
+        <label>¿EN QUÉ RUBRO ESTÁS?</label>
         <div class="select-wrap">
           <select id="f-rubro" required>
             <option value="" disabled selected hidden>Seleccioná tu industria</option>
@@ -1189,7 +1448,7 @@
       <button class="btn-submit" id="btn-submit" onclick="submitForm()">
         Quiero mi auditoría gratis →
       </button>
-      <p style="text-align:center; font-size:0.8rem; color:var(--gray); margin-top:14px;">🔒 Tu información es confidencial.</p>
+      <p style="text-align:center; font-size:0.78rem; color:var(--gray); margin-top:12px;">🔒 Tu información es confidencial.</p>
     </div>
   </section>
 
@@ -1206,7 +1465,6 @@
     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
   <h2>¡Solicitud enviada con <span>éxito!</span></h2>
-
   <p class="ty-subtitle">Gracias por confiar en sync. Recibimos tu solicitud de auditoría gratuita y nos ponemos en contacto a la brevedad por WhatsApp.</p>
 
   <div class="ty-divider">
@@ -1220,22 +1478,28 @@
       <div class="ty-card-icon">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
       </div>
-      <h4>Revisamos tu negocio</h4>
-      <p>Analizamos tu cuenta y estrategia para detectar oportunidades reales.</p>
+      <div class="ty-card-content">
+        <h4>Revisamos tu negocio</h4>
+        <p>Analizamos tu cuenta y estrategia para detectar oportunidades reales.</p>
+      </div>
     </div>
     <div class="ty-card">
       <div class="ty-card-icon">
         <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 7 12 13 22 7"/></svg>
       </div>
-      <h4>Te contactamos pronto</h4>
-      <p>Recibís un WhatsApp con los próximos pasos en menos de 24 h.</p>
+      <div class="ty-card-content">
+        <h4>Te contactamos pronto</h4>
+        <p>Recibís un WhatsApp con los próximos pasos en menos de 24 h.</p>
+      </div>
     </div>
     <div class="ty-card">
       <div class="ty-card-icon">
         <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
       </div>
-      <h4>Prepárate para crecer</h4>
-      <p>Te entregamos un plan accionable para escalar tus resultados con publicidad que funciona.</p>
+      <div class="ty-card-content">
+        <h4>Prepárate para crecer</h4>
+        <p>Te entregamos un plan accionable para escalar tus resultados con publicidad que funciona.</p>
+      </div>
     </div>
   </div>
 
@@ -1284,6 +1548,7 @@
     mainNav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
+  // Sticky CTA: se oculta cuando el formulario es visible
   const stickyCta = document.getElementById('sticky-cta');
   const contactSection = document.getElementById('contacto');
   if (contactSection && stickyCta) {
@@ -1294,7 +1559,7 @@
     obs.observe(contactSection);
   }
 
-  // FIX 6: color blanco en selects cuando tienen valor seleccionado
+  // Color blanco en selects cuando tienen valor
   ['f-rubro', 'f-budget'].forEach(id => {
     const sel = document.getElementById(id);
     sel.addEventListener('change', () => {
@@ -1321,7 +1586,6 @@
       return;
     }
 
-    // FIX 5: spinner de carga en el botón
     const btn = document.getElementById('btn-submit');
     btn.innerHTML = '<span class="btn-spinner"></span> Enviando...';
     btn.disabled = true;
@@ -1350,8 +1614,6 @@
     document.getElementById('f-web').value = '';
     document.getElementById('f-rubro').value = '';
     document.getElementById('f-budget').value = '';
-
-    // Resetear color de selects
     document.getElementById('f-rubro').classList.remove('has-value');
     document.getElementById('f-budget').classList.remove('has-value');
 
