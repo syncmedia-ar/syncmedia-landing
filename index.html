@@ -1368,6 +1368,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     btn.innerHTML = '<span class="btn-spinner"></span> Enviando...';
     btn.disabled = true;
 
+    const payload = JSON.stringify({ nombre, whatsapp, web, rubro, presupuesto });
+
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload
+      });
+    } catch (err) {
+      console.warn('Error al guardar en Sheets:', err);
+    }
+
+    try {
+      await fetch('https://hook.us2.make.com/fqmowoflnlqk6kx54ez3jjov5q6xk46g', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload
+      });
+    } catch (err) {
+      console.warn('Error al enviar a Make:', err);
+    }
     try {
       await fetch(SHEET_URL, {
         method: 'POST',
