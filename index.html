@@ -1394,16 +1394,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     } catch (err) {
       console.warn('Error al enviar a Make:', err);
     }
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, whatsapp, web, rubro, presupuesto })
-      });
-    } catch (err) {
-      console.warn('Error al guardar en Sheets:', err);
-    }
 
     document.getElementById('main-content').classList.add('hidden');
     document.getElementById('thankyou').classList.add('visible');
