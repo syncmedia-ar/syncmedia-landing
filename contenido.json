@@ -1,0 +1,43 @@
+{
+  "general": {
+    "whatsapp": "5491162338685",
+    "whatsapp_visible": "+54 9 11 6233-8685",
+    "alias_transferencia": "",
+    "medio_de_pago": "Mercado Pago",
+    "mensaje_pestana": "Volvé, tu marca te espera 💜"
+  },
+  "inicio": {
+    "etiqueta": "Auditoría gratis · Sin contrato · Sin compromiso",
+    "titulo_linea_1": "Marca",
+    "titulo_linea_2": "Tienda",
+    "titulo_linea_3": "Resultados",
+    "texto": "Ordenamos la imagen de tu marca, armamos tu tienda online y hacemos que tus anuncios en Meta vendan.",
+    "texto_destacado": "Todo con el mismo equipo.",
+    "cartelitos": [
+      "💬 ¿Me pasás el precio por privado?",
+      "🖼️ Mi logo se ve pixelado",
+      "🚀 Le di a \"Promocionar\" y nada…",
+      "📉 Gasté en anuncios y no sé si sirvió",
+      "🌙 Respondo mensajes hasta las 2 AM",
+      "📍 No me encuentran en Google Maps",
+      "🤷 ¿Esto vende o solo se ve lindo?"
+    ]
+  },
+  "marca_lista": {
+    "precio": "150.000",
+    "cuota": "61.200",
+    "plazo_dias_habiles": "14",
+    "link_pago_cuotas": "",
+    "link_formulario": ""
+  },
+  "tienda_lista": {
+    "precio": "350.000",
+    "cuota": "143.000",
+    "plazo_dias_habiles": "15",
+    "productos_incluidos": "50",
+    "precio_10_productos_extra": "15.000",
+    "abono_empretienda": "10.490",
+    "link_pago_cuotas": "",
+    "link_formulario": ""
+  }
+}

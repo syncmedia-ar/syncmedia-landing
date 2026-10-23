@@ -1,0 +1,121 @@
+# Configuración del panel Pages CMS (https://pagescms.org)
+# Define qué se puede editar desde el panel. Todo se guarda en contenido.json.
+content:
+  - name: contenido
+    label: Contenido de la web
+    type: file
+    path: contenido.json
+    format: json
+    fields:
+      - name: general
+        label: General
+        type: object
+        fields:
+          - name: whatsapp
+            label: WhatsApp (para los botones)
+            type: string
+            description: "Solo números, con código de país y sin el +. Ejemplo: 5491162338685"
+            required: true
+            pattern: "^[0-9]{10,15}$"
+          - name: whatsapp_visible
+            label: WhatsApp (como se ve escrito)
+            type: string
+            description: "Ejemplo: +54 9 11 6233-8685"
+          - name: alias_transferencia
+            label: Alias para transferencias
+            type: string
+            description: "Se muestra con un botón Copiar. Si lo dejás vacío, aparece 'Pedir datos para transferir' por WhatsApp."
+          - name: medio_de_pago
+            label: Plataforma de pago
+            type: string
+            description: "Aparece en 'Total $… con …' en la opción de cuotas. Ejemplo: Mercado Pago o Ualá Bis"
+          - name: mensaje_pestana
+            label: Frase de la pestaña cuando el usuario se va
+            type: string
+
+      - name: inicio
+        label: Banner de inicio
+        type: object
+        fields:
+          - name: etiqueta
+            label: Etiqueta chica de arriba
+            type: string
+          - name: titulo_linea_1
+            label: Título – línea 1
+            type: string
+          - name: titulo_linea_2
+            label: Título – línea 2
+            type: string
+          - name: titulo_linea_3
+            label: Título – línea 3 (en verde lima)
+            type: string
+          - name: texto
+            label: Texto debajo del título
+            type: text
+          - name: texto_destacado
+            label: Frase final en blanco
+            type: string
+          - name: cartelitos
+            label: Cartelitos en cascada
+            type: string
+            list: true
+            description: "Máximo 7. En celular se ven los primeros 4. Podés empezar cada uno con un emoji."
+
+      - name: marca_lista
+        label: Marca Lista
+        type: object
+        fields:
+          - name: precio
+            label: Precio por transferencia
+            type: string
+            description: "Sin el signo $. Ejemplo: 150.000"
+          - name: cuota
+            label: Valor de cada cuota (3 cuotas)
+            type: string
+            description: "Sin el signo $. Ejemplo: 61.200. El total se calcula solo (x3)."
+          - name: plazo_dias_habiles
+            label: Plazo de entrega (días hábiles)
+            type: string
+          - name: link_pago_cuotas
+            label: Link de pago en 3 cuotas
+            type: string
+            description: "Link de Mercado Pago (o Ualá) por el total en cuotas, con 3 cuotas sin interés activadas. Si lo dejás vacío, la opción de cuotas no aparece."
+          - name: link_formulario
+            label: Link del formulario de inicio
+            type: string
+            description: "Usá el link público (forms.gle/… o …/viewform), nunca el que termina en /edit."
+
+      - name: tienda_lista
+        label: Tienda Lista
+        type: object
+        fields:
+          - name: precio
+            label: Precio por transferencia
+            type: string
+            description: "Sin el signo $. Ejemplo: 350.000"
+          - name: cuota
+            label: Valor de cada cuota (3 cuotas)
+            type: string
+            description: "Sin el signo $. Ejemplo: 143.000. El total se calcula solo (x3)."
+          - name: plazo_dias_habiles
+            label: Plazo de entrega (días hábiles)
+            type: string
+          - name: productos_incluidos
+            label: Cantidad de productos incluidos
+            type: string
+          - name: precio_10_productos_extra
+            label: Precio por cada 10 productos extra
+            type: string
+            description: "Sin el signo $. Ejemplo: 15.000"
+          - name: abono_empretienda
+            label: Abono mensual de Empretienda
+            type: string
+            description: "Sin el signo $. Revisalo en empretienda.com cada tanto."
+          - name: link_pago_cuotas
+            label: Link de pago en 3 cuotas
+            type: string
+            description: "Link de Mercado Pago (o Ualá) por el total en cuotas, con 3 cuotas sin interés activadas. Si lo dejás vacío, la opción de cuotas no aparece."
+          - name: link_formulario
+            label: Link del formulario de inicio
+            type: string
+            description: "Usá el link público (forms.gle/… o …/viewform), nunca el que termina en /edit."
