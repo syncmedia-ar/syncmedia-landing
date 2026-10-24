@@ -26,7 +26,9 @@
   "marca_lista": {
     "precio": "150.000",
     "cuota": "61.200",
-    "plazo_dias_habiles": "14"
+    "plazo_dias_habiles": "14",
+    "link_pago_cuotas": "https://mpago.la/1sZ8w5g",
+    "link_formulario": "https://docs.google.com/forms/d/e/1FAIpQLSeE1X52GSmSfkOzUVBUNgvPli_vbbYuerOkcV2L1ms0zd-dmw/viewform?usp=sharing&ouid=102702233650822259091"
   },
   "tienda_lista": {
     "precio": "350.000",
