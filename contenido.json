@@ -2,7 +2,6 @@
   "general": {
     "whatsapp": "5491162338685",
     "whatsapp_visible": "+54 9 11 6233-8685",
-    "alias_transferencia": "",
     "medio_de_pago": "Mercado Pago",
     "mensaje_pestana": "Volvé, tu marca te espera 💜"
   },
@@ -26,9 +25,7 @@
   "marca_lista": {
     "precio": "150.000",
     "cuota": "61.200",
-    "plazo_dias_habiles": "14",
-    "link_pago_cuotas": "",
-    "link_formulario": ""
+    "plazo_dias_habiles": "14"
   },
   "tienda_lista": {
     "precio": "350.000",
@@ -37,7 +34,7 @@
     "productos_incluidos": "50",
     "precio_10_productos_extra": "15.000",
     "abono_empretienda": "10.490",
-    "link_pago_cuotas": "",
-    "link_formulario": ""
+    "link_pago_cuotas": "https://mpago.la/2KeEEan",
+    "link_formulario": "https://docs.google.com/forms/d/e/1FAIpQLSekLlGgawzQllp2h0KTIkrmQDhJ5PGznYIQ1v5DB_UrB0zhug/viewform?usp=sharing&ouid=102702233650822259091"
   }
 }
