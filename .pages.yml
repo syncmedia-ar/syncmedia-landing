@@ -103,10 +103,6 @@ content:
           - name: productos_incluidos
             label: Cantidad de productos incluidos
             type: string
-          - name: precio_10_productos_extra
-            label: Precio por cada 10 productos extra
-            type: string
-            description: "Sin el signo $. Ejemplo: 15.000"
           - name: abono_empretienda
             label: Abono mensual de Empretienda
             type: string

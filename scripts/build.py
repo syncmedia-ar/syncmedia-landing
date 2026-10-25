@@ -109,7 +109,7 @@ def nav(active):
 <div class="nav-mobile-menu" id="nav-mobile-menu">
 {mobile}
   <a href="index.html#contacto" class="btn btn-primary">Quiero mi auditoría gratis →</a>
-  <p class="nav-mobile-badge">Sin costo · Sin contrato · Sin compromiso</p>
+  <p class="nav-mobile-badge">La auditoría de Meta Ads no tiene costo</p>
 </div>
 """
 
@@ -290,6 +290,47 @@ def form_link(d):
         return ""
     return f' <a href="{E(link)}" target="_blank" rel="noopener" class="step-link">Completar formulario de inicio →</a>'
 
+def no_incluye(items):
+    """Acordeón 'Qué no incluye' (cerrado por defecto)."""
+    lis = "\n".join(
+        f'            <li><strong>{t}</strong><span>{d}</span></li>' for t, d in items
+    )
+    return f"""
+        <details class="noinc">
+          <summary>
+            <span class="noinc-title">Qué no incluye</span>
+            <span class="noinc-count">{len(items)} cosas que no incluye</span>
+          </summary>
+          <ul class="noinc-list">
+{lis}
+          </ul>
+        </details>"""
+
+
+def checklist(items, wa_msg, cta):
+    """Checklist interactiva con barra de progreso."""
+    lis = "\n".join(
+        f"""            <li><label class="ck-item"><input type="checkbox" data-ck="{i}"><span class="ck-box" aria-hidden="true"></span><span class="ck-text"><strong>{t}</strong><span>{d}</span></span></label></li>"""
+        for i, (t, d) in enumerate(items)
+    )
+    return f"""
+        <div class="ck" data-checklist="tienda-lista">
+          <div class="ck-head">
+            <h2 class="list-title">Para empezar necesitamos</h2>
+            <p class="ck-sub">Tildá lo que ya tenés listo.</p>
+            <div class="ck-progress" aria-hidden="true"><span class="ck-bar"></span></div>
+            <p class="ck-count" aria-live="polite"><span data-ck-done>0</span> de {len(items)} listos</p>
+          </div>
+          <ul class="ck-list">
+{lis}
+          </ul>
+          <div class="ck-done" hidden>
+            <p>¡Tenés todo listo para empezar!</p>
+            <a href="#" data-wa="{wa_msg}" class="btn btn-primary">{cta}</a>
+          </div>
+        </div>"""
+
+
 FORM = f"""
   <section class="section alt" id="contacto">
     <div class="wrap contact">
@@ -301,7 +342,7 @@ FORM = f"""
           <li>{CHECK} Análisis de tu cuenta de Meta Ads</li>
           <li>{CHECK} Revisión de la competencia en tu rubro</li>
           <li>{CHECK} Propuesta de estrategia personalizada</li>
-          <li>{CHECK} Sin costo, sin contrato, sin compromiso</li>
+          <li>{CHECK} La auditoría no tiene costo</li>
         </ul>
       </div>
 
@@ -346,7 +387,7 @@ FORM = f"""
         <div class="form-group" id="g-rubro">
           <label for="f-rubro">¿En qué rubro estás?</label>
           <div class="select-wrap">
-            <select id="f-rubro" name="rubro">
+            <select id="f-rubro" name="rubro" required>
               <option value="" selected hidden>Seleccioná tu rubro</option>
               <option>E-commerce / Tienda online</option>
               <option>Moda, belleza o cosmética</option>
@@ -364,7 +405,7 @@ FORM = f"""
         <div class="form-group" id="g-budget" hidden>
           <label for="f-budget">¿Cuánto invertís por mes en ads?</label>
           <div class="select-wrap">
-            <select id="f-budget" name="presupuesto">
+            <select id="f-budget" name="presupuesto" required>
               <option value="" selected hidden>Presupuesto mensual aprox.</option>
               <option>Aún no invierto en ads</option>
               <option>Menos de USD 200/mes</option>
@@ -445,7 +486,7 @@ INDEX = f"""
         <article class="service-card glow-card">
           <span class="tag">Publicidad</span>
           <h3>Meta Ads</h3>
-          <p class="hook">No vendemos anuncios. Vendemos resultados medibles.</p>
+          <p class="hook">Cada peso que invertís tiene un objetivo.</p>
           <ul>
             <li>Campañas en Facebook e Instagram</li>
             <li>Creativos diseñados para convertir</li>
@@ -615,7 +656,7 @@ MARCA = f"""
       </div>
       <aside class="price-box violet" aria-label="Precio">
         <span class="label">Inversión</span>
-        <span class="big">${E(M['precio'])}<small>por transferencia</small></span>
+        <span class="big">${E(M['precio'])}</span>
         <dl class="price-meta">
           <div><dt>Entrega</dt><dd>{E(M['plazo_dias_habiles'])} días hábiles</dd></div>
           <div><dt>Ajustes incluidos</dt><dd>2 rondas</dd></div>
@@ -631,7 +672,7 @@ MARCA = f"""
         <h2>Todo lo que tu marca necesita para dar confianza</h2>
       </div>
       <div class="include-grid">
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Identidad visual express</h3>
           <p class="sub">Que te reconozcan a primera vista.</p>
           <ul>
@@ -639,7 +680,7 @@ MARCA = f"""
             <li><span><strong>Historias destacadas:</strong> íconos y portadas con los colores y el estilo de tu marca.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Diseño y contenido para redes</h3>
           <p class="sub">Publicá con coherencia sin empezar de cero cada vez.</p>
           <ul>
@@ -648,7 +689,7 @@ MARCA = f"""
             <li><span><strong>4 a 6 plantillas de historias</strong> y estados en formato vertical.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Textos de tu marca</h3>
           <p class="sub">Palabras que generan confianza y ganas de comprar.</p>
           <ul>
@@ -656,7 +697,7 @@ MARCA = f"""
             <li><span><strong>Textos listos para usar:</strong> publicaciones, mensajes de presentación y respuestas a reseñas.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Google Maps (Perfil de empresa)</h3>
           <p class="sub">Que te encuentren cuando buscan lo que ofrecés en tu zona.</p>
           <ul>
@@ -688,13 +729,12 @@ MARCA = f"""
   <section class="section alt">
     <div class="wrap two-col">
       <div>
-        <h2 class="list-title"><span class="dot off"></span>Qué no incluye</h2>
-        <ul class="plain-list">
-          <li>Diseño de un logo desde cero.</li>
-          <li>Manual de marca corporativo.</li>
-          <li>Sesiones de fotos o producción de video.</li>
-          <li>Manejo diario de tus redes (publicar, responder comentarios y mensajes).</li>
-        </ul>
+{no_incluye([
+            ("Logo desde cero", "Ajustamos tu logo actual, no diseñamos uno nuevo"),
+            ("Manual de marca", "No armamos un manual corporativo completo"),
+            ("Fotos o video", "No hacemos sesiones de fotos ni producción de video"),
+            ("Manejo diario de redes", "Publicar y responder comentarios y mensajes"),
+        ])}
       </div>
       <div>
         <h2 class="list-title"><span class="dot"></span>Después de Marca Lista</h2>
@@ -729,11 +769,10 @@ TIENDA = f"""
       </div>
       <aside class="price-box violet" aria-label="Precio">
         <span class="label">Inversión</span>
-        <span class="big">${E(T['precio'])}<small>por transferencia</small></span>
+        <span class="big">${E(T['precio'])}</span>
         <dl class="price-meta">
           <div><dt>Entrega</dt><dd>{E(T['plazo_dias_habiles'])} días hábiles</dd></div>
           <div><dt>Productos incluidos</dt><dd>Hasta {E(T['productos_incluidos'])}</dd></div>
-          <div><dt>Productos adicionales</dt><dd>${E(T['precio_10_productos_extra'])} cada 10</dd></div>
         </dl>{pay_block(T, 'tienda-lista', 'Tienda Lista')}
       </aside>
     </div>
@@ -763,7 +802,7 @@ TIENDA = f"""
         <h2>Nosotras la armamos, vos la manejás fácil</h2>
       </div>
       <div class="include-grid">
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Configuración de la tienda</h3>
           <ul>
             <li><span><strong>Alta y configuración</strong> inicial de tu cuenta.</span></li>
@@ -772,7 +811,7 @@ TIENDA = f"""
             <li><span><strong>Dominio gratuito:</strong> tumarca.empretienda.com.ar</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Diseño con tu identidad</h3>
           <ul>
             <li><span><strong>Plantilla personalizada</strong> con tus colores, tipografías y logo.</span></li>
@@ -780,7 +819,7 @@ TIENDA = f"""
             <li><span><strong>Fotos optimizadas:</strong> trabajamos con las tuyas y, si hace falta, generamos imágenes con IA.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Catálogo y textos</h3>
           <ul>
             <li><span><strong>Carga de hasta {E(T['productos_incluidos'])} productos</strong> organizados por categorías.</span></li>
@@ -788,7 +827,7 @@ TIENDA = f"""
             <li><span><strong>Páginas institucionales:</strong> Quiénes somos, Preguntas frecuentes y Políticas de cambio y envío.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Herramientas de venta</h3>
           <ul>
             <li><span><strong>Cupones y promociones</strong> iniciales: 2x1, descuentos o envío gratis.</span></li>
@@ -805,28 +844,26 @@ TIENDA = f"""
   <section class="section alt">
     <div class="wrap two-col">
       <div>
-        <h2 class="list-title"><span class="dot"></span>Para empezar necesitamos</h2>
-        <ul class="plain-list">
-          <li><strong>Tu logo</strong> en PNG con fondo transparente (o PDF).</li>
-          <li><strong>Info de tu marca:</strong> quiénes son, qué venden y cómo manejan cambios, envíos y devoluciones.</li>
-          <li><strong>Fotos de tus productos:</strong> mínimo 10 para arrancar.</li>
-          <li><strong>Datos de cada producto:</strong> nombre, precio, talles o colores y stock.</li>
-          <li><strong>Peso y medidas</strong> de los productos empaquetados, para calcular el envío solo.</li>
-          <li><strong>Cómo cobrás y enviás:</strong> tu cuenta de Mercado Pago o Ualá Bis y tus opciones de envío.</li>
-          <li><strong>Contacto y redes:</strong> email, WhatsApp, dirección y horarios si tenés local.</li>
-        </ul>
+{checklist([
+            ("Tu logo", "PNG sin fondo o PDF"),
+            ("Info de tu marca", "Quiénes son, qué venden y cómo manejan cambios y envíos"),
+            ("Fotos de productos", "Mínimo 10 para arrancar"),
+            ("Datos de cada producto", "Nombre, precio, talles o colores y stock"),
+            ("Peso y medidas", "De los productos empaquetados, para calcular envíos"),
+            ("Cobros y envíos", "Tu cuenta de Mercado Pago o Ualá Bis y cómo enviás"),
+            ("Contacto y redes", "Email, WhatsApp, dirección y horarios"),
+        ], "Hola, ya tengo todo listo para empezar mi Tienda Lista", "Quiero mi tienda")}
         <p class="fine">¿No tenés las categorías definidas? Te ayudamos a armarlas.</p>
       </div>
       <div>
-        <h2 class="list-title"><span class="dot off"></span>Qué no incluye</h2>
-        <ul class="plain-list">
-          <li><strong>Abono de Empretienda:</strong> lo pagás directo a la plataforma.</li>
-          <li><strong>Dominio propio</strong> (.com o .com.ar) y su renovación anual.</li>
-          <li><strong>Sesiones de fotos</strong> o retoque avanzado.</li>
-          <li><strong>Cambios en el código</strong> de la plataforma: usamos sus herramientas y plantillas.</li>
-          <li><strong>Creación de cuentas de redes</strong> o catálogos de Instagram y WhatsApp.</li>
-          <li><strong>Gestión diaria:</strong> carga de productos nuevos después de la entrega, pedidos y atención al cliente se cotizan aparte.</li>
-        </ul>
+{no_incluye([
+            ("Abono de Empretienda", "Lo pagás directo a la plataforma"),
+            ("Dominio propio", ".com o .com.ar y su renovación anual"),
+            ("Sesiones de fotos", "Ni retoque avanzado"),
+            ("Cambios en el código", "Usamos las herramientas de la plataforma"),
+            ("Cuentas de redes", "Ni catálogos de Instagram o WhatsApp"),
+            ("Gestión diaria", "Productos nuevos, pedidos y atención se cotizan aparte"),
+        ])}
       </div>
     </div>
   </section>
@@ -877,22 +914,22 @@ META = f"""
       <div>
         <div class="section-label">Meta Ads</div>
         <h1>Estrategia<br>Anuncios<br><span class="lime">Resultados</span></h1>
-        <p class="hook">No vendemos anuncios. Vendemos resultados medibles con una estrategia detrás.</p>
-        <p class="lead">Gestionamos tus campañas en Facebook e Instagram y diseñamos creativos pensados para frenar el scroll y generar consultas y ventas.</p>
+        <p class="hook">Cada peso que invertís tiene un objetivo, y cada mes sabés qué resultado dio.</p>
+        <p class="lead">Planificamos, diseñamos y optimizamos tus campañas en Facebook e Instagram para que generen consultas y ventas, no solo "me gusta".</p>
         <div class="btn-row">
-          <a href="index.html?servicio=auditoria#contacto" class="btn btn-primary">Quiero mi auditoría gratis <span class="arrow-circle">{ARROW}</span></a>
+          <a href="index.html?servicio=auditoria#contacto" class="btn btn-primary">Pedir mi auditoría gratis <span class="arrow-circle">{ARROW}</span></a>
           <a href="#planes" class="btn btn-ghost">Ver planes</a>
         </div>
       </div>
       <aside class="price-box violet" aria-label="Auditoría gratis">
         <span class="label">Primer paso</span>
-        <span class="big" style="font-size:clamp(2rem,3.4vw,2.6rem)">Auditoría <span class="lime">gratis</span></span>
-        <dl class="price-meta">
-          <div><dt>Análisis de tu cuenta</dt><dd>Incluido</dd></div>
-          <div><dt>Revisión de tu competencia</dt><dd>Incluido</dd></div>
-          <div><dt>Propuesta de estrategia</dt><dd>Incluido</dd></div>
-          <div><dt>Costo</dt><dd>$0, sin compromiso</dd></div>
-        </dl>
+        <span class="big" style="font-size:clamp(1.8rem,3.2vw,2.4rem)">Empezá por una auditoría <span class="lime">gratis</span></span>
+        <ul class="audit-list">
+          <li>Análisis de tu cuenta actual</li>
+          <li>Qué está haciendo tu competencia</li>
+          <li>Propuesta de estrategia para tu negocio</li>
+        </ul>
+        <p class="audit-note">Te la entregamos por WhatsApp. Si te sirve, avanzamos con un plan.</p>
       </aside>
     </div>
   </section>
@@ -928,13 +965,13 @@ META = f"""
     <div class="wrap">
       <div class="section-head">
         <div class="section-label">Qué incluye</div>
-        <h2>Nosotras manejamos el auto. Vos ponés el combustible.</h2>
-        <p>Vos ponés el presupuesto de Meta; nosotras hacemos que rinda lo más posible sin desperdiciar nada.</p>
+        <h2>Qué hacemos mes a mes</h2>
+        <p>Desde la configuración inicial hasta el reporte de fin de mes, sabés qué hacemos y por qué.</p>
       </div>
       <div class="include-grid">
-        <div class="include-card glow-card">
-          <h3>Puesta en marcha</h3>
-          <p class="sub">Se hace una sola vez, en 7 a 15 días.</p>
+        <div class="include-card">
+          <h3>Setup inicial</h3>
+          <p class="sub">Se hace una sola vez, al empezar. Tarda entre 7 y 15 días.</p>
           <ul>
             <li><span><strong>Diagnóstico</strong> de tu cuenta actual, si ya tenés una.</span></li>
             <li><span><strong>Configuración</strong> del Business Manager y la cuenta publicitaria.</span></li>
@@ -944,7 +981,7 @@ META = f"""
             <li><span><strong>Creativos y textos iniciales</strong> para lanzar.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Gestión mensual</h3>
           <p class="sub">El trabajo continuo, mes a mes.</p>
           <ul>
@@ -956,7 +993,7 @@ META = f"""
             <li><span><strong>Novedades por WhatsApp</strong> cada semana y una reunión mensual opcional.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Creativos que convierten</h3>
           <p class="sub">Cada pieza tiene una razón estratégica para existir.</p>
           <ul>
@@ -965,7 +1002,7 @@ META = f"""
             <li><span><strong>Versiones para comparar:</strong> con y sin precio, distintos llamados a la acción y públicos.</span></li>
           </ul>
         </div>
-        <div class="include-card glow-card">
+        <div class="include-card">
           <h3>Vos tenés el control</h3>
           <p class="sub">Tu plata, tu cuenta, tus decisiones.</p>
           <ul>
@@ -981,20 +1018,19 @@ META = f"""
   <section class="section alt">
     <div class="wrap two-col">
       <div>
-        <h2 class="list-title"><span class="dot off"></span>Qué no incluye</h2>
-        <ul class="plain-list">
-          <li><strong>El presupuesto de anuncios:</strong> lo pagás directo a Meta, junto con los impuestos que cobra tu banco.</li>
-          <li><strong>Otras plataformas</strong> como Google Ads o TikTok Ads.</li>
-          <li><strong>Producción o edición de video</strong> y Reels.</li>
-          <li><strong>Cambios en tu web:</strong> si detectamos problemas en tu página te los marcamos, pero no la programamos.</li>
-          <li><strong>Manejo diario de redes</strong> (comentarios y mensajes).</li>
-        </ul>
+{no_incluye([
+            ("Presupuesto de anuncios", "Lo pagás directo a Meta, junto con los impuestos de tu banco"),
+            ("Otras plataformas", "Como Google Ads o TikTok Ads"),
+            ("Video y Reels", "No producimos ni editamos video"),
+            ("Cambios en tu web", "Te marcamos los problemas, pero no la programamos"),
+            ("Manejo diario de redes", "Comentarios y mensajes"),
+        ])}
       </div>
       <div>
         <h2 class="list-title"><span class="dot"></span>Condiciones</h2>
         <ul class="plain-list">
           <li><strong>Permanencia mínima de 2 meses.</strong> Es el tiempo que necesita una campaña para aprender y mostrar resultados.</li>
-          <li><strong>Pago por adelantado:</strong> la puesta en marcha se abona junto con el primer mes.</li>
+          <li><strong>Pago por adelantado:</strong> el setup inicial se abona junto con el primer mes.</li>
           <li><strong>Desde el tercer mes,</strong> el plan se renueva mes a mes y podés darlo de baja avisando antes del vencimiento.</li>
           <li><strong>Ideal si ya vendés</strong> por algún canal (tienda online, local o redes) y querés escalar.</li>
         </ul>
@@ -1028,11 +1064,11 @@ META = f"""
       </div>
     </div>
   </section>
-""" + cta_band("Empezá con una auditoría gratis", "Analizamos tu cuenta y tu competencia y te proponemos una estrategia. Sin costo y sin compromiso.", "Hola, quiero mi auditoría gratis de Meta Ads 🚀", "auditoria", wa_label="Pedir por WhatsApp")
+""" + cta_band("Empezá con una auditoría gratis", "Analizamos tu cuenta y tu competencia y te proponemos una estrategia. Te la entregamos por WhatsApp.", "Hola, quiero mi auditoría gratis de Meta Ads 🚀", "auditoria", wa_label="Pedir por WhatsApp")
 
 page("meta-ads.html",
      "Meta Ads — Gestión de anuncios en Facebook e Instagram | Sync",
-     "Gestión profesional de campañas en Facebook e Instagram con creativos diseñados para convertir. Pedí tu auditoría gratis, sin compromiso.",
+     "Gestión profesional de campañas en Facebook e Instagram con creativos diseñados para convertir. Pedí tu auditoría gratis por WhatsApp.",
      META, sticky=("Quiero mi auditoría gratis →", "index.html?servicio=auditoria#contacto", None))
 
 # ───────────────────────── GRACIAS ─────────────────────────

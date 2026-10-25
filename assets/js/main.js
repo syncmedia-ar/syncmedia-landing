@@ -93,6 +93,36 @@ document.querySelectorAll('[data-copy]').forEach(function (btn) {
   });
 });
 
+/* ── Checklist "Para empezar necesitamos" ── */
+document.querySelectorAll('[data-checklist]').forEach(function (box) {
+  const clave = 'sync_ck_' + box.dataset.checklist;
+  const checks = box.querySelectorAll('input[data-ck]');
+  const total = checks.length;
+  const contador = box.querySelector('[data-ck-done]');
+  const barra = box.querySelector('.ck-bar');
+  const listo = box.querySelector('.ck-done');
+  let guardado = [];
+  try { guardado = JSON.parse(localStorage.getItem(clave) || '[]'); } catch (e) {}
+  checks.forEach(function (c) { c.checked = guardado.indexOf(c.dataset.ck) !== -1; });
+
+  function actualizar(guardar) {
+    const marcados = Array.prototype.filter.call(checks, function (c) { return c.checked; });
+    contador.textContent = marcados.length;
+    barra.style.width = (marcados.length / total * 100) + '%';
+    listo.hidden = marcados.length !== total;
+    if (guardar) {
+      try { localStorage.setItem(clave, JSON.stringify(marcados.map(function (c) { return c.dataset.ck; }))); } catch (e) {}
+    }
+  }
+  checks.forEach(function (c) {
+    c.addEventListener('change', function () {
+      actualizar(true);
+      if (!listo.hidden) window.dataLayer.push({ event: 'checklist_completa', pagina: location.pathname });
+    });
+  });
+  actualizar(false);
+});
+
 /* ── Menú ── */
 const nav = document.querySelector('.nav');
 const burger = document.getElementById('nav-hamburger');
@@ -116,15 +146,25 @@ if (nav) {
   onScroll();
 }
 
-/* ── Barra fija de celular: se oculta cuando el formulario está a la vista ── */
+/* ── Barra fija de celular ──
+   Aparece cuando el usuario empieza a bajar y se oculta cuando el formulario está a la vista. */
 const sticky = document.getElementById('sticky-cta');
-const contacto = document.getElementById('contacto');
-if (sticky && contacto && 'IntersectionObserver' in window) {
-  new IntersectionObserver(function (entries) {
-    const visible = entries[0].isIntersecting;
-    sticky.style.opacity = visible ? '0' : '1';
-    sticky.style.pointerEvents = visible ? 'none' : 'auto';
-  }, { threshold: 0.15 }).observe(contacto);
+if (sticky) {
+  const contacto = document.getElementById('contacto');
+  let formVisible = false;
+  function refrescarBarra() {
+    const mostrar = window.scrollY > window.innerHeight * 0.6 && !formVisible;
+    sticky.classList.toggle('show', mostrar);
+    document.body.classList.toggle('sticky-on', mostrar);
+  }
+  if (contacto && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      formVisible = entries[0].isIntersecting;
+      refrescarBarra();
+    }, { threshold: 0.15 }).observe(contacto);
+  }
+  window.addEventListener('scroll', refrescarBarra, { passive: true });
+  refrescarBarra();
 }
 
 /* ── Mensaje en la pestaña cuando el usuario se va ── */

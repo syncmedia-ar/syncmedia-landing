@@ -18,11 +18,12 @@
 const NOMBRE_PESTANA = '';
 
 // Columnas: [nombre que se ve en el Sheet, dato que manda la web]
+// (al comparar se ignoran mayúsculas y espacios: "Instagram / Web" = "Instagram/Web")
 const COLUMNAS = [
   ['Fecha', 'fecha'],
   ['Nombre', 'nombre'],
   ['WhatsApp', 'whatsapp'],
-  ['Instagram / Web', 'web'],
+  ['Instagram/Web', 'web'],
   ['Servicio', 'servicio'],
   ['Rubro', 'rubro'],
   ['Presupuesto', 'presupuesto'],
@@ -45,11 +46,14 @@ function doPost(e) {
       titulos = hoja.getRange(1, 1, 1, hoja.getLastColumn()).getValues()[0]
         .map(function (t) { return String(t).trim(); });
     }
+    function igual(a, b) {
+      return String(a).toLowerCase().replace(/\s+/g, '') === String(b).toLowerCase().replace(/\s+/g, '');
+    }
 
     // Crear las columnas que falten
     COLUMNAS.forEach(function (col) {
       const titulo = col[0];
-      const existe = titulos.some(function (t) { return t.toLowerCase() === titulo.toLowerCase(); });
+      const existe = titulos.some(function (t) { return igual(t, titulo); });
       if (!existe) {
         titulos.push(titulo);
         hoja.getRange(1, titulos.length).setValue(titulo).setFontWeight('bold');
@@ -58,7 +62,7 @@ function doPost(e) {
 
     // Armar la fila respetando el orden de las columnas del Sheet
     const fila = titulos.map(function (t) {
-      const col = COLUMNAS.find(function (c) { return c[0].toLowerCase() === t.toLowerCase(); });
+      const col = COLUMNAS.find(function (c) { return igual(c[0], t); });
       return col ? (datos[col[1]] !== undefined ? datos[col[1]] : '') : '';
     });
 
